@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -16,8 +17,8 @@ import lombok.Setter;
 
 @Data
 @Entity
-public class Utente {
-	
+public class Fattorino {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(value = AccessLevel.NONE)
@@ -27,15 +28,18 @@ public class Utente {
 	private String nome;
 	
 	@Column
-	private String cognome;
+	private String telefono;
 	
 	@Column
-	private String indirizzo;
+	private String tipo_veicolo;
 	
-	@OneToMany (mappedBy = "cliente")
+	@OneToMany
 	private List<Ordine> ordini;
 	
-	public Utente () {
+	public Fattorino() {
 		this.ordini = new ArrayList<Ordine>();
 	}
+	
+	@Transient
+	public double totale;
 }
