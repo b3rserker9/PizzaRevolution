@@ -17,7 +17,57 @@
 </div>
 <div class="background">
 </div>
+<div id="popup1" class="overlay1">
+      <form th:action="@{/login}" method="POST">
+        <div class="login">
+          <div class="head-login">
+          <img src="images/avatar.png" alt=""></div>
+          <div class="credentials">
+              <div class="group1">
+          <div class="username">
+              <input type="text" placeholder="Enter Username" name="username" required>
+          </div>
+          <div class="password">
+              <input type="password" placeholder="Enter Password" name="password" required>
+          </div>
+      </div>
+      </div>
+      <div class="end-part">
+      <button type="submit" class="btn_login" >Login</button></div>
+        <a class="close" href="#">&times;</a>
+      </div>
+      </form>
+    </div>
+    <div id="popup2" class="overlay1">
+      <form th:action="@{/register}" method="POST">
+      <div class="login-r">
+        <div class="head-login">
+        <img src="images/avatar.png" alt=""></div>
+        <div class="credentials">
+            <div class="group1">
+            <div class="nome">
+                    <input type="text" placeholder="Nome" name="name" required th:field="${user.nome}">
+            </div>    
+            <div class="p cognome">
+                <input type="text" placeholder="Cognome" name="cognome" required th:field="${user.cognome}">
+        </div>  
+        <div class="p email">
+            <input type="text" placeholder="Indirizzo" name="indirizzo" required th:field="{user.indirizzo}">
+    </div> 
+            <div class="p username">
+            <input type="text" placeholder="Username" name="username" required th:field="${credentials.username}">
+        </div>
 
+        <div class="p password">
+            <input type="password" placeholder="Password" name="password" required th:field="${credentials.password}">
+        </div>
+    </div>
+    </div>
+    <div class="end-part">
+    <button  type="submit" class="btn_login" >Register</button></div>
+    </div>
+    </form>
+  </div>
 <div class="first">
     <div class="img">
  <p class="head">PIZZA REVOLUTION</p>

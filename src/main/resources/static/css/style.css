@@ -6,6 +6,158 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
+body{
+    height: 100vh;
+    text-align: center;
+  }
+  /*Trigger Button*/
+  .login-trigger {
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to bottom right, #B05574, #F87E7B);
+    padding: 15px 30px;
+    border-radius: 30px;
+    position: relative; 
+    top: 50%;
+  }
+  
+  .overlay1 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay1:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  .login{
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    margin: auto;
+    border: 0 solid #73AD21;
+    width: 15%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    font-family: 'Titillium Web', sans-serif;
+    transition: all 2s ease-in-out;
+    
+}
+
+.login-r {
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    border: 0 solid #73AD21;
+    width: 25%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    font-family: 'Titillium Web', sans-serif;
+    
+}
+
+.login .head-login{
+    font-family: 'Titillium Web', sans-serif;
+    z-index: 2;
+    height: 25%;
+    
+}
+.login .head-login img{
+
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.login-r .head-login img{
+
+    max-height: 100%;
+    max-width: 100%;
+    height: 220px;
+}
+
+.login .credentials, .login-r .credentials{
+   height: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.credentials .password{
+    margin-top: 70px;
+}
+.credentials .p{
+    margin-top: 70px;
+}
+.credentials .group1 input,.credentials .group1 textarea{
+    text-transform: capitalize;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #3d3c3c;
+    background-color: rgba(0,0,0,.5);
+    background: transparent;
+    font-size: 20px;
+    color: white;
+}
+.credentials .group1 input::placeholder{
+    color: white;
+    opacity: 0.7;
+}
+.end-part{
+    height: 25%;
+    display: flex;
+   align-items: center;
+   justify-content: center;
+   
+}
+.btn_login{
+    cursor:pointer;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(to bottom right, #ff7b00, #ff9408);
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 25px;
+}
+.btn_login:hover{
+    color: black;
+}
+  
+  .login .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    z-index: 6;
+  }
+  .login .close:hover {
+    color: #06D85F;
+  }
 
 .first{
     width: 100%;
@@ -83,23 +235,27 @@ html, body {
     opacity: 1;
 }
 .wrapper {
+  
 	width: 1800px;
 	margin: 0 auto;
+  
 }
-
 header {
+  
 	height: 70px;
-	background: #000000;
+	background-color: rgba(0,0,0,.5);
 	width: 100%;
 	position: fixed;
-  display: flex;
   z-index: 2;
+  
 }
-.logo {
-	width: 30%;
-	float: left;
-	line-height: 100px;
+.wrapper{
+  opacity: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .wrapper a {
     
 	text-decoration: none;
@@ -109,24 +265,47 @@ header {
 	letter-spacing: 5px;
 
 }
+.wrapper .btn .b1{
+  
+  cursor:pointer;
+  display:inline-block ;
+  padding: 0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  font-size: 18px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  background-color:rgb(241, 112, 6);;
+  text-align:center;
+  transition: all 0.2s;
+}
+.wrapper .btn .b1:hover{
+  border-color: rgba(255,255,255,1);
+}
 .logo img {
+  
     height: 90px;
     width: 120px;
     background-size: auto 68px;
 }
 .nav {
+  
   font-family: 'Titillium Web', sans-serif;
-	float: center;
 	line-height: 60px;
     box-sizing: border-box;
     transition: all .35s ease;
 }
 .nav * {
+  
     box-sizing: border-box;
     transition: all .35s ease;
   }
   
   .nav li {
+    
     display: inline-block;
     list-style: outside none none;
     margin: .5em 1em;
@@ -134,6 +313,7 @@ header {
   }
   
   .nav a {
+    
     padding: .5em .8em;
     color: rgb(255, 255, 255);
     position: relative;
@@ -144,6 +324,7 @@ header {
   
   .nav a::before,
   .nav a::after {
+    
     content: '';
     height: 14px;
     width: 14px;
@@ -182,6 +363,7 @@ header {
   
   
 .footer {
+  overflow: hidden;
   background: #000000;
   color: #d3d3d3;
   height: 400px;
@@ -320,7 +502,7 @@ header {
   height: 50px;
   width: 100%;
   text-align: center;
-  position: inherit;
+  position: inhe;
   bottom: 0px;
   left: 0px;
   padding-top: 20px;
