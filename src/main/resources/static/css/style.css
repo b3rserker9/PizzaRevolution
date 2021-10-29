@@ -10,7 +10,16 @@ body{
     height: 100vh;
     text-align: center;
   }
-  /*Trigger Button*/
+  
+  .bgded{
+	height: 100%;
+	width: 100%;
+	background-image: url('/images/pexels-vinicius-benedit-1082343.jpg');
+    background-size: cover;
+    }
+	
+	
+	
   .login-trigger {
     font-weight: bold;
     color: #fff;
@@ -64,7 +73,7 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     margin: auto;
-    border: 0 solid #73AD21;
+    
     width: 25%;
     height: 80%;
     display: flex;
@@ -87,7 +96,11 @@ body{
     max-height: 100%;
     max-width: 100%;
 }
-
+.login-r .head-login{
+    font-family: 'Titillium Web', sans-serif;
+    height: 25%;
+    
+}
 .login-r .head-login img{
 
     max-height: 100%;
@@ -95,14 +108,22 @@ body{
     height: 220px;
 }
 
-.login .credentials, .login-r .credentials{
+.login .credentials{
+	
    height: 50%;
    display: flex;
    align-items: center;
    justify-content: center;
 }
+.login-r .credentials{
+	
+   height: 90%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
 
-.credentials .password{
+ .credentials .password{
     margin-top: 70px;
 }
 .credentials .p{

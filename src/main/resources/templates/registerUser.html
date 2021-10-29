@@ -1,0 +1,55 @@
+   <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/base.html :: headerfiles(title='Registrazione Utente')"> 
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+<link th:href="@{/css/login.css}" rel="stylesheet">
+<style>
+</style>
+</head>
+<body>
+<div class="bgded">
+<header th:replace="fragments/base.html :: header"></header>
+   <div class="overlay2">
+      
+      <div class="login-r">
+        <div class="head-login">
+        <img src="images/avatar.png" alt=""></div>
+        
+        <form th:action="@{/register}" method="POST">
+        
+        <div class="credentials">
+            <div class="group1">
+            <div class="nome">
+                    <input type="text" placeholder="nome" required th:field="${user.nome}"/>
+                    <h6 class="heading" th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}" th:style="'color:red'"></h6>
+            </div>    
+            <div class="p cognome">
+                <input type="text" placeholder="Cognome"  required th:field="${user.cognome}"/>
+                <h6 class="heading" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" th:style="'color:red'"></h6>
+        </div>  
+        <div class="p email">
+            <input type="text" placeholder="Indirizzo"  required th:field="${user.indirizzo}"/>
+            <h6 class="heading" th:if="${#fields.hasErrors('user.indirizzo')}" th:errors="${user.indirizzo}" th:style="'color:red'"></h6>
+					
+    </div> 
+            <div class="p username">
+            <input type="text" placeholder="Username"  required th:field="${credentials.username}"/>
+            <h6 class="heading" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></h6>
+        </div>
+
+        <div class="p password">
+            <input type="password" placeholder="Password"  required th:field="${credentials.password}"/>
+            <h6 class="heading" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></h6>
+        </div>
+    </div>
+    </div>
+    <div class="end-part">
+    <button  type="submit" class="btn_login" >Register</button></div>
+        </form>
+        
+        
+    </div>
+  </div>
+</div>
+    </body>
+</html>
