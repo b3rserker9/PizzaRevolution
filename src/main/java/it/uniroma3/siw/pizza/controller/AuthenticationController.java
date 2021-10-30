@@ -35,16 +35,13 @@ public class AuthenticationController {
 		return "registerUser";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET) 
-	public String showLoginForm (Model model) {
-		return "loginForm";
-	}
+	
+	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
 	public String logout(Model model) {
 		return "index";
 	}
-	
 	//default lo abbiamo definito in authconfiguration una volta che il login ha avuto successo
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
@@ -75,7 +72,7 @@ public class AuthenticationController {
 
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
-            return "registrationSuccessful";
+            return "loginForm";
         }
         return "registerUser";
     }

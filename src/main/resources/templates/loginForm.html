@@ -1,0 +1,43 @@
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/base.html :: headerfiles(title='Login Utente')"> 
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+<style>
+</style>
+</head>
+<body>
+
+<div class="bgded">
+<header th:replace="fragments/base.html :: header"></header>
+      <div th:fragment="login">
+      <div id="login" class="overlay">
+        <div class="login">
+        <div class="x"><a href="#c_popup">X</a></div>
+          <div class="head-login">
+          <img src="images/avatar.png" alt="">
+          </div>
+          <form th:action="@{/login}"  method="POST">
+          <div class="credentials">
+          <div class="mauro">
+           <div class="p username">
+            <input type="text" placeholder="Username" name="username" required />
+            
+        </div>
+
+        <div class=" password">
+            <input type="password" placeholder="Password" name="password"  required />
+            
+        </div>
+          </div>
+      </div>
+      <div class="end-part">
+      <button type="submit" class="btn_login" >Login</button>
+      </div>
+        </form>
+      </div>
+      </div>
+      </div>
+   
+</div>
+</body>
+</html>

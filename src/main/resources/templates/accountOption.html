@@ -1,0 +1,26 @@
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+<style>
+</style>
+</head>
+<body>
+<div th:fragment="modal">
+<div id="c_popup" class="overlay1">
+   <div id="popup" class="overlay">
+        <div class="triangle"></div>
+   
+        <div class="options">
+        <div class="x"><a href="#c_popup">X</a></div>
+            <div class="dati">
+            <a  href="Dati">Dati</a></div>
+            <div class="l2">
+            <a   th:href="@{/logout}">Logout</a></div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+    </body>
+</html>

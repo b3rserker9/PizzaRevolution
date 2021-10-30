@@ -30,7 +30,8 @@ body{
     top: 50%;
   }
   
-  .overlay1 {
+ 
+   .overlay {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -39,13 +40,14 @@ body{
     background: rgba(0, 0, 0, 0.7);
     transition: opacity 500ms;
     visibility: hidden;
-    opacity: 0;
-  }
-  .overlay1:target {
-    visibility: visible;
-    opacity: 1;
-  }
-  .login{
+     opacity: 0;
+    }
+    .overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+ .login{
     text-align: center;
     position: fixed;
     top: 50%;
@@ -53,7 +55,6 @@ body{
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
     margin: auto;
-    border: 0 solid #73AD21;
     width: 15%;
     height: 50%;
     display: flex;
@@ -62,10 +63,17 @@ body{
     background-color: rgba(0,0,0,.5);
     color: #fff;
     font-family: 'Titillium Web', sans-serif;
-    transition: all 2s ease-in-out;
     
 }
-
+.x a{
+          position: fixed;
+          left: 85%;
+          top: 3%;
+          font-size: 30px;
+          color: red;
+          font-family: 'Titillium Web', sans-serif;
+          text-decoration: none;
+      }
 .login-r {
     text-align: center;
     position: fixed;
@@ -86,9 +94,10 @@ body{
 }
 
 .login .head-login{
+	 
     font-family: 'Titillium Web', sans-serif;
-    z-index: 2;
-    height: 25%;
+    height: 30%;
+
     
 }
 .login .head-login img{
@@ -98,7 +107,7 @@ body{
 }
 .login-r .head-login{
     font-family: 'Titillium Web', sans-serif;
-    height: 25%;
+
     
 }
 .login-r .head-login img{
@@ -109,12 +118,10 @@ body{
 }
 
 .login .credentials{
-	
-   height: 50%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  flex: 50%;
 }
+
+
 .login-r .credentials{
 	
    height: 90%;
@@ -129,9 +136,9 @@ body{
 .credentials .p{
     margin-top: 70px;
 }
-.credentials .group1 input,.credentials .group1 textarea{
+.credentials  input,.credentials  textarea{
     text-transform: capitalize;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
     outline: none;
     border: none;
@@ -141,18 +148,20 @@ body{
     font-size: 20px;
     color: white;
 }
-.credentials .group1 input::placeholder{
+.credentials input::placeholder{
     color: white;
     opacity: 0.7;
 }
 .end-part{
-    height: 25%;
+	
     display: flex;
    align-items: center;
    justify-content: center;
+   flex: 10%;
    
 }
 .btn_login{
+	margin-top: 35px;
     cursor:pointer;
         font-weight: bold;
         color: #fff;
@@ -165,20 +174,7 @@ body{
     color: black;
 }
   
-  .login .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-    z-index: 6;
-  }
-  .login .close:hover {
-    color: #06D85F;
-  }
+ 
 
 .first{
     width: 100%;
