@@ -267,10 +267,11 @@ header {
   
 }
 .wrapper{
-  opacity: 1;
   display: flex;
   justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  margin-top: -6px;
 }
 
 .wrapper a {
@@ -309,9 +310,9 @@ header {
     background-size: auto 68px;
 }
 .nav {
-  
+  flex: 60%;
+  text-align: center;
   font-family: 'Titillium Web', sans-serif;
-	line-height: 60px;
     box-sizing: border-box;
     transition: all .35s ease;
 }
