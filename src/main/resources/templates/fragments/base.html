@@ -32,7 +32,7 @@
 				  <ul class="nav">
                     <li><a href="#">LA PIZZA</a></li>
                     <li><a th:href="@{/chisiamo}">CHI SIAMO</a></li>
-                    <li><a href="#">MENU</a></li>
+                    <li><a th:href="@{/menu}">MENU</a></li>
                     <li><a href="#">ORDINA</a></li>
                     <li><a th:href="@{/contattaci}">CONTATTACI</a></li>
                   </ul>
@@ -41,8 +41,9 @@
                     <a class="b1" th:href="@{/register}">Register</a>
                   </div>
 			</div>
+			<div th:replace="loginForm :: login">modal</div>
 		</header>
-		
+		    
 		<footer th:fragment="footer">
     <div class="footer">
         <div class="footer-content">

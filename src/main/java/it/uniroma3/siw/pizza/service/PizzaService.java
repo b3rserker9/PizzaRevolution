@@ -20,9 +20,9 @@ public class PizzaService {
 	public Pizza inserisci(Pizza pizza) {
 		return this.pizzarepo.save(pizza);
 	}
-
+	@Transactional
 	public List<Pizza> tutte() {
-		return (List<Pizza>)this.pizzarepo.findAll();
+		return (List<Pizza>) pizzarepo.findAll();
 	}
 
 	public boolean alreadyExists(String nome) {
