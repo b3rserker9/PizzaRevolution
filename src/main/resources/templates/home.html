@@ -6,6 +6,14 @@
 </head>
 <header th:replace="fragments/default.html :: header"></header>
 <div th:replace="accountOption :: modal">modal</div>
+	<figcaption class="sectiontitle">
+					<p class="nome">
+						Benvenuto <a sec:authentication="name"> </a>
+					</p>
+
+
+
+				</figcaption>
 <footer th:replace="fragments/default.html :: footer"></footer>
     </body>
 </html>
