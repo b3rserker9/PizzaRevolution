@@ -44,7 +44,8 @@ header {
     background-size: auto 68px;
 }
 .nav {
-	border: 3px solid rgb(0, 0, 0);
+	text-align: center;
+	margin-right: 160px;
   flex: 80%;
   font-family: 'Titillium Web', sans-serif;
     box-sizing: border-box;
@@ -64,8 +65,7 @@ header {
     padding: 0;
   }
   
-  .nav a {
-    
+  .nav a {    
     padding: .5em .8em;
     color: rgb(255, 255, 255);
     position: relative;

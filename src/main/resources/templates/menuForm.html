@@ -4,11 +4,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link th:href="@{/css/style.css}" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 <header th:replace="fragments/base.html :: header"></header>
+<form th:action="@{/ordine}" method="POST" th:object="${ordine}">
 
+<select hidden="true " th:field="*{cliente}" required>
+				<th:block th:each="u :${utente}">
+					<option th:value="${u.id}"/>
+				</th:block> 
+			</select>
   <div class="container-menu">
     <div class="menu">
       <h2 class="menu-group-heading">
@@ -27,6 +34,11 @@
               Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
               congue eu mauris nec, pretium tincidunt nulla.
             </p>
+          </div>
+         <div class="add">
+              
+            <input type="checkbox" checked="checked"  th:field="*{pizze}"
+            			th:value="${p.id}" th:text="${p.nome}"/>
           </div>
         </div>
             
@@ -65,6 +77,26 @@
       </div>
     </div>
   </div>
+   <div class="overlay" id="overlay1">
+      <div class="orario">
+      <div class="titolo"><h2>ORARIO</h2></div>
+      <div class="time">
+      <input th:field="*{orario}" type="time" list="calltimeslist">
+    </div>
+      <datalist id="calltimeslist">
+		<option th:each="orario : ${allOrari}" th:value="${orario}" th:text="${orario}"></option>
+
+</datalist>
+ <div class="invio">
+				<span><button class="bt1" type="submit">Invio</button></span>
+			</div>
+  </div>
+   </div>
+   <div>
+				<span><a href="#overlay1">Next</a></span>
+			</div>
+ 
+</form>
 </body>
 
 </html>
