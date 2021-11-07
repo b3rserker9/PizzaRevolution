@@ -579,10 +579,19 @@ header {
   }
   
   .menu-item-description {
+    width: auto;
+    height: auto;
+    border: 2px solid black;
     line-height: 1.6;
   }
+  .box{
+	margin-top: 90px;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+}
   .add input{
-    margin-top: 90px;
+	margin-left: 10px;
     width: 45px; height: 40px;
     padding-bottom: 45px;
     border-radius: 50%; 
@@ -676,5 +685,21 @@ header {
       width: 125px;
       height: 125px;
     }
+    
+  }
+  
+  .quantity{
+	height: auto;
+  }
+   .quantity [type=number]{
+	margin-top: 2px;
+    width: 70px;
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+}
+.quantity [type=number]::-webkit-inner-spin-button{
+    width: 200px;
+    
   }
   

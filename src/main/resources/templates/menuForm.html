@@ -31,15 +31,21 @@
               <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
             </h3>
             <p class="menu-item-description">
-              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
-              congue eu mauris nec, pretium tincidunt nulla.
+              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque.
             </p>
           </div>
-         <div class="add">
-              
+           <div class="box">
+            <div class="quantity">
+              <input type="number" th:value="${ordinepizza.quantita}"></input>
+            
+            </div>
+         <div class="add">         
             <input type="checkbox" checked="checked"  th:field="*{pizze}"
-            			th:value="${p.id}" th:text="${p.nome}"/>
+            			th:value="${p.id}"/>
           </div>
+           </div>
+          </div>
+          
         </div>
             
       </div>

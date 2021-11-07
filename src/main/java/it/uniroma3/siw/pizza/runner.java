@@ -35,7 +35,7 @@ public class runner  {
 	@Autowired
 	private FattorinoValidator fattorinovalidator;
 	
-	/*@PostConstruct
+	@PostConstruct
 	public void popola() {
 
 
@@ -78,5 +78,5 @@ public class runner  {
 		this.fattoriniService.inserisci(f3);
 		this.fattoriniService.inserisci(f4);
 
-	}*/
+	}
 }

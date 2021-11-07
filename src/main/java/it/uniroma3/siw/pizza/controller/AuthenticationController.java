@@ -70,8 +70,8 @@ public class AuthenticationController {
 
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
-            return "loginForm";
+            return "index/#login";
         }
-        return "registerUser";
+        return "index";
     }
 }

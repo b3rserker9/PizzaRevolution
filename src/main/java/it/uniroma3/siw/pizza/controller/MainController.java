@@ -12,18 +12,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.pizza.controller.validator.FattorinoValidator;
 import it.uniroma3.siw.pizza.controller.validator.PizzaValidator;
 import it.uniroma3.siw.pizza.model.Credentials;
 import it.uniroma3.siw.pizza.model.Ordine;
+import it.uniroma3.siw.pizza.model.OrdinePizza;
 import it.uniroma3.siw.pizza.model.Pizza;
 import it.uniroma3.siw.pizza.model.Utente;
 import it.uniroma3.siw.pizza.service.CredentialsService;
 import it.uniroma3.siw.pizza.service.FattorinoService;
+import it.uniroma3.siw.pizza.service.OrdinePizzaService;
 import it.uniroma3.siw.pizza.service.OrdineService;
 import it.uniroma3.siw.pizza.service.PizzaService;
 
@@ -33,6 +38,10 @@ import it.uniroma3.siw.pizza.service.PizzaService;
 
 @Controller
 public class MainController {
+	
+	@Autowired
+	private OrdinePizzaService ordinepizzaservice;
+	
 	@Autowired
 	private OrdineService ordineservice;
 
@@ -80,13 +89,18 @@ public class MainController {
 		System.out.println(pizzaservice.tutte());
 		model.addAttribute("utente", this.getUtente());	
 		Ordine ordine = new Ordine();
+		OrdinePizza ordinepizza = new OrdinePizza();
 		model.addAttribute("ordine", ordine);
+		model.addAttribute("ordinepizza", ordinepizza);
 			return "menuForm";
 	}
+	
+	
 	@RequestMapping(value="/ordine", method = RequestMethod.POST)
-	public String newOrdine(@ModelAttribute("ordine") Ordine ordine, Model model) {
+	public String newOrdine(@ModelAttribute("ordinepizza") OrdinePizza ordinepizza, @ModelAttribute("ordine") Ordine ordine, Model model) {
 		ordine.setData(new SimpleDateFormat("dd/MMM/yyyy").format(new Date()));
 		this.ordineservice.inserisci(ordine);
+		this.ordinepizzaservice.inserisci(ordinepizza);
 		
 		return "home.html";
 	}
@@ -96,7 +110,6 @@ public class MainController {
 		Utente utente = credentials.getUser();
 		return utente;
 	}
-
 
 	@ModelAttribute("allOrari")
 	public List<String> populateOrari() {

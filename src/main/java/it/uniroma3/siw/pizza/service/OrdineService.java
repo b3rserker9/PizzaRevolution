@@ -50,6 +50,7 @@ public class OrdineService {
 	public Ordine inserisci(Ordine ordine) {
 		return ordinerepository.save(ordine);
 	}
+	
 
 	public List<Ordine> ordiniPerCliente(Utente cliente){
 		return ordinerepository.findByCliente(cliente);
@@ -70,6 +71,8 @@ public class OrdineService {
 	public List<Ordine> ordiniPerData(String data) {
 		return ordinerepository.findByData(data);
 	}
+	
+	
 	
 	public Ordine ordinePerId(Long id) {
 		Optional <Ordine> ordine = this.ordinerepository.findById(id);
