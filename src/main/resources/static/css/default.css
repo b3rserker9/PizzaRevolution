@@ -6,12 +6,6 @@ html{
     background-color: tomato;
 }
 
-.nome{
-	margin-top: 70px;
-	margin-left: 40px;
-	font-size: 60px;
-	font-family: 'Titillium Web', sans-serif;
-}
 .wrapper {
   
 	width: 1800px;
@@ -23,7 +17,7 @@ header {
 	height: 70px;
 	background-color: rgba(0,0,0,.5);
 	width: 100%;
-	
+	position: fixed;
  
   
 }
