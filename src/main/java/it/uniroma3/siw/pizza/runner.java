@@ -6,18 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import it.uniroma3.siw.pizza.model.Credentials;
 import it.uniroma3.siw.pizza.model.Fattorino;
+import it.uniroma3.siw.pizza.model.Ingrediente;
 import it.uniroma3.siw.pizza.controller.validator.FattorinoValidator;
 import it.uniroma3.siw.pizza.controller.validator.PizzaValidator;
 import it.uniroma3.siw.pizza.model.Pizza;
+import it.uniroma3.siw.pizza.model.Utente;
 import it.uniroma3.siw.pizza.service.CredentialsService;
 import it.uniroma3.siw.pizza.service.FattorinoService;
+import it.uniroma3.siw.pizza.service.IngredienteService;
 import it.uniroma3.siw.pizza.service.OrdineService;
 import it.uniroma3.siw.pizza.service.PizzaService;
+import it.uniroma3.siw.pizza.service.UtenteService;
 
 
 @Service
 public class runner  {
+	
+	@Autowired
+	private UtenteService utenteservice;
+	
 	@Autowired
 	private OrdineService ordineservice;
 
@@ -35,8 +44,23 @@ public class runner  {
 	@Autowired
 	private FattorinoValidator fattorinovalidator;
 	
-	/*@PostConstruct
+	@Autowired
+	private IngredienteService ingredienteservice;
+	
+	@PostConstruct
 	public void popola() {
+		
+		Utente u = new Utente();
+		Credentials c = new Credentials();
+		u.setNome("Yousef");
+		u.setCognome("Ali");
+		u.setIndirizzo("Via giovanni aldini");
+		c.setUser(u);
+		c.setUsername("admin");
+		c.setPassword("admin1");
+		this.credentialsService.saveAdmin(c);
+		this.utenteservice.saveUser(u);
+		
 
 
 		Pizza p1 = new Pizza();
@@ -55,6 +79,34 @@ public class runner  {
 		p4.setNome("4-Formaggi");
 		p4.setPrezzo(7.00);
 
+		Ingrediente i1 = new Ingrediente();
+		i1.setNome("Pomodoro");
+		
+		Ingrediente i2 = new Ingrediente();
+		i2.setNome("Mozzarella");
+		
+		Ingrediente i3 = new Ingrediente();
+		i3.setNome("Salsiccia");
+		
+		Ingrediente i4 = new Ingrediente();
+		i4.setNome("Funghi");
+		
+		Ingrediente i5 = new Ingrediente();
+		i5.setNome("Salame piccante");
+		
+		Ingrediente i6 = new Ingrediente();
+		i6.setNome("Provola");
+		
+		Ingrediente i7 = new Ingrediente();
+		i7.setNome("Gongorzola");
+		
+		this.ingredienteservice.inserisci(i1);
+		this.ingredienteservice.inserisci(i2);
+		this.ingredienteservice.inserisci(i3);
+		this.ingredienteservice.inserisci(i4);
+		this.ingredienteservice.inserisci(i5);
+		this.ingredienteservice.inserisci(i6);
+		this.ingredienteservice.inserisci(i7);
 
 		this.pizzaserv.inserisci(p1);
 		this.pizzaserv.inserisci(p2);
@@ -77,6 +129,7 @@ public class runner  {
 		this.fattoriniService.inserisci(f2);
 		this.fattoriniService.inserisci(f3);
 		this.fattoriniService.inserisci(f4);
+		
 
-	}*/
+	}
 }

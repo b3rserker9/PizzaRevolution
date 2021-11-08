@@ -1,6 +1,8 @@
 package it.uniroma3.siw.pizza.controller;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,9 +14,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.pizza.controller.validator.FattorinoValidator;
 import it.uniroma3.siw.pizza.controller.validator.PizzaValidator;
@@ -24,6 +30,7 @@ import it.uniroma3.siw.pizza.model.Pizza;
 import it.uniroma3.siw.pizza.model.Utente;
 import it.uniroma3.siw.pizza.service.CredentialsService;
 import it.uniroma3.siw.pizza.service.FattorinoService;
+import it.uniroma3.siw.pizza.service.IngredienteService;
 import it.uniroma3.siw.pizza.service.OrdineService;
 import it.uniroma3.siw.pizza.service.PizzaService;
 
@@ -40,9 +47,6 @@ public class MainController {
 	private CredentialsService credentialsService;
 
 	@Autowired
-	private PizzaService pizzaserv;
-
-	@Autowired
 	private PizzaValidator pizzavalidator;
 
 	@Autowired
@@ -52,6 +56,9 @@ public class MainController {
 	
 	@Autowired
 	private PizzaService pizzaservice;
+	
+	@Autowired
+	private IngredienteService ingredienteservice;
 	
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -74,8 +81,8 @@ public class MainController {
 	public String contattaciFree(Model model) {
 		return "contattaciFree";}
 		
-	@RequestMapping(value = "/menu", method = RequestMethod.GET)
-		public String menu(Model model) {
+	@RequestMapping(value = "/ordine", method = RequestMethod.GET)
+		public String ordine(Model model) {
 		model.addAttribute("Pizze", pizzaservice.tutte());
 		System.out.println(pizzaservice.tutte());
 		model.addAttribute("utente", this.getUtente());	
@@ -90,6 +97,31 @@ public class MainController {
 		
 		return "home.html";
 	}
+	
+	@PostMapping(value = "/newpizza")
+	public String newPizza(@ModelAttribute("newpizza") Pizza pizza, @RequestParam("file") MultipartFile file, Model model) throws IllegalStateException, IOException {
+		this.pizzaservice.inserisci(pizza);
+		String baseDir="C:\\Users\\utente\\Documents\\workspace-spring-tool-suite-4-4.11.1.RELEASE\\PizzaRevolution\\src\\main\\resources\\static\\images\\";
+			file.transferTo(new File(baseDir + pizza.getNome()+".jpg"));
+		
+		return "admin/home";
+	}
+	
+	@GetMapping(value = "/newpizza")
+	public String PizzaF(Model model) {
+		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
+		Pizza pizza= new Pizza();
+		model.addAttribute("pizza" , pizza);
+		return "addpizza";
+	}
+	
+	@GetMapping(value = "/menu")
+	public String menu(Model model) {
+		model.addAttribute("Pizze",this.pizzaservice.tutte());
+		System.out.println(pizzaservice.tutte());
+		return "menu";
+	}
+	
 	public Utente getUtente() {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());

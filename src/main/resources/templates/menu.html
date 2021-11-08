@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<style>
+.container-menu {
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+    max-width: 1200px;
+    padding: 1.5em;
+  }
+  
+  .menu {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+  }
+  
+  .menu-group-heading {
+    margin: 0;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .menu-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+    padding: 1.5em 0;
+  }
+  
+  .menu-item {
+    display: flex;
+  }
+  
+  .menu-item-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 1.5em;
+  }
+  
+  .menu-item-text {
+    flex-grow: 1;
+  }
+  
+  .menu-item-heading {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+  
+  .menu-item-name {
+    margin-right: 1.5em;
+  }
+  
+  .menu-item-description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 20px;
+    font-family: 'Titillium Web', sans-serif;
+  }
+  
+  .add input{
+    margin-top: 90px;
+    width: 45px; height: 40px;
+    padding-bottom: 45px;
+    border-radius: 50%; 
+    text-align: center;
+    transition: box-shadow .3s;
+    background: lightgrey;
+    cursor: pointer;
+    border: 0;
+    appearance: none;
+   }
+  .add input[type="checkbox"]::after{
+       font-size: 40px;
+       content: '+';
+       color: rgb(0, 0, 0);
+   }
+  
+  .add input:checked{ box-shadow: inset 0 0 0 20px #32a852;    
+    content: '+';
+    color: white;
+}
+ @media screen and (min-width: 992px) {
+    .menu {
+      font-size: 16px;
+    }
+  
+    .menu-group {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .menu-item-image {
+      width: 125px;
+      height: 125px;
+    }
+  }
+</style>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head  th:replace="fragments/admin.html :: headerfiles(title='Menu')">  
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header th:replace="fragments/admin.html :: header"></header>
+  <div class="container-menu">
+    <div class="menu">
+      <h2 class="menu-group-heading">
+        Pizza
+      </h2>
+      <div class="menu-group">
+      <div th:each="p : ${Pizze}">
+      <div class="menu-item">
+          <img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
+          <div class="menu-item-text">
+            <h3 class="menu-item-heading">
+              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
+              <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
+            </h3>
+            <div class="menu-item-description">
+              <div th:each=" i: ${p.ingredientiBase}">
+              <p th:text="${i.nome} + ','"> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+            
+      </div>
+      </div>
+      <h2 class="menu-group-heading">
+        Dessert
+      </h2>
+      <div class="menu-group">
+        <div class="menu-item">
+          <img class="menu-item-image" src="https://dummyimage.com/600x400/f00/000" alt="Bruschetta">
+          <div class="menu-item-text">
+            <h3 class="menu-item-heading">
+              <span class="menu-item-name">Bruschetta</span>
+              <span class="menu-item-price">$12.90</span>
+            </h3>
+            <p class="menu-item-description">
+              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
+              congue eu mauris nec, pretium tincidunt nulla.
+            </p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-image" src="https://dummyimage.com/600x400/00f/000" alt="Bruschetta">
+          <div class="menu-item-text">
+            <h3 class="menu-item-heading">
+              <span class="menu-item-name">Bruschetta</span>
+              <span class="menu-item-price">$12.90</span>
+            </h3>
+            <p class="menu-item-description">
+              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
+              congue eu mauris nec, pretium tincidunt nulla.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

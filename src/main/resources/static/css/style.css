@@ -579,8 +579,13 @@ header {
   }
   
   .menu-item-description {
-    line-height: 1.6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 20px;
+    font-family: 'Titillium Web', sans-serif;
   }
+  
   .add input{
     margin-top: 90px;
     width: 45px; height: 40px;
