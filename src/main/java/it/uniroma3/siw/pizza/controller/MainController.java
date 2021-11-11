@@ -76,9 +76,9 @@ public class MainController {
 	public String contattaci(Model model) {
 		return "contattaci";
 	}
-	@RequestMapping(value = "/chisiamoFree", method = RequestMethod.GET)
-	public String chiSiamoFree(Model model) {
-			return "chisiamoFree";
+	@RequestMapping(value = "/suppli", method = RequestMethod.GET)
+	public String suppli(Model model) {
+			return "suppli";
 	}
 	@RequestMapping(value = "/contattaciFree", method = RequestMethod.GET)
 	public String contattaciFree(Model model) {

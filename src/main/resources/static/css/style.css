@@ -700,24 +700,10 @@ header {
       height: 125px;
     }
     
-    *{
-    padding: 0;
-    margin: 0;
-}
-
-html, body{
-    overflow-x: hidden;
-}
 
 .area,.box{
     display: flex;
     flex-direction: column;
-}
-
-.nav{
-    background-color: black;
-    display: flex;
-    flex-direction: row;
 }
 
 .box .immagine{
