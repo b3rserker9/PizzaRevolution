@@ -29,6 +29,12 @@
 				<div class="logo">
                     <a th:href="@{/index}"><img  src="images/logo2.png"/></a>
 				</div>
+				
+				<input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+				<div class="total">
 				  <ul class="nav">
                     <li><a href="#">LA PIZZA</a></li>
                     <li><a th:href="@{pippo}">SUPPLI</a></li>
@@ -36,10 +42,12 @@
                     <li><a href="#">ORDINA</a></li>
                     <li><a th:href="@{/contattaci}">CONTATTACI</a></li>
                   </ul>
-                   <div class="btn">
+                  <div class="btn">
                     <a class="b1" href="#login">Login</a>
                     <a class="b1" th:href="@{/register}">Register</a>
                   </div>
+				</div>
+                   
 			</div>
 			<div th:replace="loginForm :: login">modal</div>
 		</header>

@@ -3,11 +3,9 @@
 	padding: 0;
 }
 html, body {
-    max-width: 100%;
     overflow-x: hidden;
 }
 body{
-    height: 100vh;
     text-align: center;
   }
   
@@ -271,7 +269,6 @@ select:-webkit-autofill:focus {
 }
 .wrapper {
   
-	width: 1800px;
 	margin: 0 auto;
   
 }
@@ -283,6 +280,57 @@ header {
 	position: fixed;
   	z-index: 2;
   
+}
+
+.checkbtn{
+	flex: 60%;
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+
+@media (max-width: 1300px){
+	
+	 .total{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	justify-content: center;
+    position: fixed;
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+    top: 70px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+	.total ul li,.total .btn{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  .total ul li a,.total .btn{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ .total{
+    left: 0;
+  }
+	.checkbtn{
+    display: block;
+  }
+  
+
 }
 .wrapper{
   display: flex;
@@ -301,7 +349,14 @@ header {
 	letter-spacing: 5px;
 
 }
-.wrapper .btn .b1{
+
+
+.total{
+	flex: 60%;
+	display: flex;
+	flex-direction: row;
+}
+.total .btn .b1{
   
   cursor:pointer;
   display:inline-block ;
