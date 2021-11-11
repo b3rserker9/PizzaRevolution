@@ -13,7 +13,7 @@ html{
   
 }
 header {
-  
+  	top: 0;
 	height: 70px;
 	background-color: rgba(0,0,0,.5);
 	width: 100%;
@@ -345,9 +345,11 @@ header {
   left: 0px;
   padding-top: 20px;
 }
-.container {
+.container-menu {
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
     max-width: 1200px;
-    margin: 0 auto;
     padding: 1.5em;
   }
   
@@ -396,9 +398,95 @@ header {
   }
   
   .menu-item-description {
-    line-height: 1.6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 20px;
+    font-family: 'Titillium Web', sans-serif;
   }
   
+  .add input{
+    margin-top: 90px;
+    width: 45px; height: 40px;
+    padding-bottom: 45px;
+    border-radius: 50%; 
+    text-align: center;
+    transition: box-shadow .3s;
+    background: lightgrey;
+    cursor: pointer;
+    border: 0;
+    appearance: none;
+   }
+  .add input[type="checkbox"]::after{
+       font-size: 40px;
+       content: '+';
+       color: rgb(0, 0, 0);
+   }
+  
+  .add input:checked{ box-shadow: inset 0 0 0 20px #32a852;    
+    content: '+';
+    color: white;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(92, 92, 92, 0.521);
+    z-index: 2;
+  }
+  .orario{
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 25%;
+      height: 50%;
+      background-color: white;
+  }
+  .orario .titolo{
+      flex: 33%;
+      text-align: center;
+  }
+  .orario .time{
+      flex: 33%;
+      text-align: center;
+  }
+ .time input[type=time]{
+     font-size: 25px;
+    background: #EAEFF1;
+    border: none;
+    border-bottom: 4px solid #40d2ff;
+}
+  .orario .invio{
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+      flex: 33%;
+  }
+  .orario .invio .bt1{
+  
+    cursor:pointer;
+    display:inline-block ;
+    padding: 0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    font-size: 18px;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    background-color:rgb(255, 105, 5);;
+    text-align:center;
+    transition: all 0.2s;
+  }
   @media screen and (min-width: 992px) {
     .menu {
       font-size: 16px;

@@ -6,9 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import it.uniroma3.siw.pizza.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.pizza.controller.validator.UtenteValidator;
@@ -35,11 +37,12 @@ public class AuthenticationController {
 		return "registerUser";
 	}
 	
-	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
 	public String logout(Model model) {
 		return "index";
 	}
+	
+	
 	//default lo abbiamo definito in authconfiguration una volta che il login ha avuto successo
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
@@ -55,7 +58,6 @@ public class AuthenticationController {
     	//se non lo e'
         return "home";
     }
-	
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)
     public String registerUser(@ModelAttribute("user") Utente user,
                  BindingResult userBindingResult,
@@ -70,7 +72,7 @@ public class AuthenticationController {
 
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
-            return "loginForm";
+            return "index";
         }
         return "registerUser";
     }

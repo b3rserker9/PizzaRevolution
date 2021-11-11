@@ -1,3 +1,10 @@
+
+<style>
+.error p{
+	color: red;
+}
+</style>
+
  <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments/base.html :: headerfiles(title='Login Utente')"> 
@@ -8,7 +15,9 @@
 <body>
 
 <div class="bgded">
+
 <header th:replace="fragments/base.html :: header"></header>
+
       <div th:fragment="login">
       <div id="login" class="overlay">
         <div class="login">
@@ -16,6 +25,7 @@
           <div class="head-login">
           <img src="images/avatar.png" alt="">
           </div>
+          <p th:if="${loginError}" class="error">Wrong user or password</p>
           <form th:action="@{/login}"  method="POST">
           <div class="credentials">
           <div class="mauro">

@@ -47,7 +47,7 @@ public class runner  {
 	@Autowired
 	private IngredienteService ingredienteservice;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void popola() {
 		
 		Utente u = new Utente();
@@ -131,5 +131,5 @@ public class runner  {
 		this.fattoriniService.inserisci(f4);
 		
 
-	}
+	}*/
 }

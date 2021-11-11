@@ -54,8 +54,8 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and().formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/default")
+                .loginPage("/login").failureUrl("/index#login").
+                defaultSuccessUrl("/default")
 
                 .and().logout()
                 .logoutUrl("/logout")

@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import it.uniroma3.siw.pizza.controller.validator.FattorinoValidator;
 import it.uniroma3.siw.pizza.controller.validator.PizzaValidator;
 import it.uniroma3.siw.pizza.model.Credentials;
+import it.uniroma3.siw.pizza.model.Fattorino;
 import it.uniroma3.siw.pizza.model.Ordine;
 import it.uniroma3.siw.pizza.model.Pizza;
 import it.uniroma3.siw.pizza.model.Utente;
@@ -63,8 +64,10 @@ public class MainController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
+		model.addAttribute("loginError", true);
 			return "index";
 	}
+	
 	@RequestMapping(value = "/chisiamo", method = RequestMethod.GET)
 	public String chiSiamo(Model model) {
 			return "index";
@@ -88,14 +91,38 @@ public class MainController {
 		model.addAttribute("utente", this.getUtente());	
 		Ordine ordine = new Ordine();
 		model.addAttribute("ordine", ordine);
+		model.addAttribute("role",this.credentialsService.getRoleAuthenticated());
 			return "menuForm";
 	}
 	@RequestMapping(value="/ordine", method = RequestMethod.POST)
 	public String newOrdine(@ModelAttribute("ordine") Ordine ordine, Model model) {
+		boolean c=true;
 		ordine.setData(new SimpleDateFormat("dd/MMM/yyyy").format(new Date()));
+		for(Fattorino f : this.fattoriniService.tutti()) {
+			if(f.getOrdini().isEmpty()) {
+				ordine.setFattorino(f);
+				 f.getOrdini().add(ordine);
+				 break;
+			}
+			else {
+			 for(Ordine o : f.getOrdini()) {
+				 if(o.getOrario().equals(ordine.getOrario())) {
+					 c=false;
+					 break;
+				 }
+				 else {
+					 c=true;
+				 }
+			 }
+			 if(c) {
+				 ordine.setFattorino(f);
+				 f.getOrdini().add(ordine);
+				 break;
+			 }
+			}
+		}
 		this.ordineservice.inserisci(ordine);
-		
-		return "home.html";
+		return "home";
 	}
 	
 	@PostMapping(value = "/newpizza")
@@ -119,6 +146,7 @@ public class MainController {
 	public String menu(Model model) {
 		model.addAttribute("Pizze",this.pizzaservice.tutte());
 		System.out.println(pizzaservice.tutte());
+		
 		return "menu";
 	}
 	
