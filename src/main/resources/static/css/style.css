@@ -754,47 +754,56 @@ header {
       width: 125px;
       height: 125px;
     }
+ }
     
 
-.area,.box{
+.area{
     display: flex;
     flex-direction: column;
-}
-
-.box .immagine{
-    margin-top: 2%;
+}	
+.area .immagine{
+	margin-top: 7%;
     margin-left: 25%;
     margin-right: 25%;
 }
-.box .titolo{
-    text-align: center;
+.area .titolo{
+	text-align: center;
     font-size: 22px;
     padding-top: 2%;
     padding-bottom: 2%;
 }
-.box .introduzione{
+.area .introduzione{
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
     font-size: 17px;
     padding: 4%;
-    padding-left: 20%;
+    padding-left: 15%;
+    padding-right: 15%;
     background-color: black;
     color: white;
 }
-.box .storia{
+.area .storia{
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
     font-size: 18px;
     padding: 4%;
-    padding-left: 20%;
-    background-color: orange;
-    color: black;
+    padding-left: 15%;
+    padding-right: 15%;
+    /*background-color: orange;
+    color: black;*/
 }
-.box .gustalo{
+.area .gustalo{
+	font-family: "PostGrotesk",sans-serif;
+	text-align: left;
     font-size: 18px;
     padding: 4%;
-    padding-left: 20%;
-    background-color: white;
-    color: black;
+    padding-left: 15%;
+    padding-right: 15%;
+    /*background-color: white;
+    color: black;/*
     /* border: 3px solid brown; */
 }
-  }
+
   
   
   
