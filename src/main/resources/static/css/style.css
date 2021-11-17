@@ -773,7 +773,7 @@ header {
     padding-bottom: 2%;
 }
 .area .introduzione{
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "PostGrotesk",sans-serif;
 	text-align: left;
     font-size: 17px;
     padding: 4%;
@@ -783,14 +783,14 @@ header {
     color: white;
 }
 .area .storia{
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "PostGrotesk",sans-serif;
 	text-align: left;
     font-size: 18px;
     padding: 4%;
     padding-left: 15%;
     padding-right: 15%;
-    /*background-color: orange;
-    color: black;*/
+    background-color: orange;
+    color: black;
 }
 .area .gustalo{
 	font-family: "PostGrotesk",sans-serif;
@@ -799,11 +799,7 @@ header {
     padding: 4%;
     padding-left: 15%;
     padding-right: 15%;
-    /*background-color: white;
-    color: black;/*
+    background-color: white;
+    color: black;
     /* border: 3px solid brown; */
-}
-
-  
-  
-  
+}  
