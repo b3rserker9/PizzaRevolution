@@ -1,106 +1,104 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerfiles(title)">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="${title}"></title>
-	<link rel="shortcut icon" href="images/pizza_icon.ico" />
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-	<link th:href="@{/css/style.css}" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital@1&family=News+Cycle&family=Noto+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
-</head>
-<body>
-
-	<div class="box-area">
+	<head th:fragment="headerfiles(title)">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title th:text="${title}"></title>
+		<link rel="shortcut icon" href="images/pizza_icon.ico" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+		<link th:href="@{/css/style.css}" rel="stylesheet">
+	  	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital@1&family=News+Cycle&family=Noto+Sans&display=swap" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
 	
-		<header th:fragment="header">
-			<div class="wrapper">
-				<div class="logo">
-                    <a th:href="@{/index}"><img  src="images/logo2.png"/></a>
+		<div class="box-area">
+			<header th:fragment="header">
+				<div class="wrapper">
+					<div class="logo">
+	                    <a th:href="@{/index}"><img  src="images/logo2.png"/></a>
+					</div>
+					
+					<input type="checkbox" id="check">
+	      <label for="check" class="checkbtn">
+	        <i class="fas fa-bars"></i>
+	      </label>
+					<div class="total">
+					  <ul class="nav">
+	                    <li><a href="#">LA PIZZA</a></li>
+	                    <li><a th:href="@{suppli}">SUPPLI</a></li>
+	                    <li><a th:href="@{menu}">MENU</a></li>
+	                    <li><a href="#">ORDINA</a></li>
+	                    <li><a th:href="@{/contattaci}">CONTATTACI</a></li>
+	                  </ul>
+	                  <div class="btn">
+	                    <a class="b1" href="#login">Login</a>
+	                    <a class="b1" th:href="@{/register}">Register</a>
+	                  </div>
+					</div>
+	                   
 				</div>
-				
-				<input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-      </label>
-				<div class="total">
-				  <ul class="nav">
-                    <li><a href="#">LA PIZZA</a></li>
-                    <li><a th:href="@{suppli}">SUPPLI</a></li>
-                    <li><a th:href="@{menu}">MENU</a></li>
-                    <li><a href="#">ORDINA</a></li>
-                    <li><a th:href="@{/contattaci}">CONTATTACI</a></li>
-                  </ul>
-                  <div class="btn">
-                    <a class="b1" href="#login">Login</a>
-                    <a class="b1" th:href="@{/register}">Register</a>
-                  </div>
+				<div th:replace="loginForm :: login">modal</div>
+			</header>
+			    
+			<footer th:fragment="footer">
+			<div class="footer">
+				<div class="footer-content">
+	    
+					<div class="footer-section about">
+						<h1 class="logo-text">Pizza Revolution</h1>
+						<p>Qualcosa....</p>
+						
+						<div class="contact">
+							<span><i class="fas fa-phone"></i> &nbsp; (+39) 356-323-2351</span>
+							<span><i class="fas fa-envelope"></i> &nbsp; PizzaR@gmail.com.com</span>
+						</div>
+						<div class="socials">
+							<a href="https://www.facebook.com/pizzarevolutionpleonardo/"><i class="fab fa-facebook"></i></a>
+							<a href="#"><i class="fab fa-instagram"></i></a>
+							<a href="#"><i class="fab fa-twitter"></i></a>
+							<a href="#"><i class="fab fa-youtube"></i></a>
+						</div>
+					</div>
+	    
+					<div class="footer-section links">
+						<h2>Quick Links</h2>
+						<br>
+						<ul>
+						<li><a href="#">La Pizza</a></li>
+						<li><a href="#">Chi Siamo</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Ordina</a></li>
+						<li><a href="#">Contattaci</a></li>
+						</ul>
+					</div>
+	    
+					<form action="" class="footer-section newsletter">
+						<h2>Subscribe Our Newsletter & Join US</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						<div class="newsletter-box">
+							<i class="fas fa-envelope"></i>
+							<input class="emailbox" type="email" name="" value="" placeholder="Enter your email id">
+							<button type="button" name="button">Subscribe</button>
+						</div>
+					</form>
 				</div>
-                   
-			</div>
-			<div th:replace="loginForm :: login">modal</div>
-		</header>
-		    
-		<footer th:fragment="footer">
-    <div class="footer">
-        <div class="footer-content">
-    
-          <div class="footer-section about">
-            <h1 class="logo-text">Pizza Revolution</h1>
-            <p>
-              Qualcosa....
-            </p>
-            <div class="contact">
-              <span><i class="fas fa-phone"></i> &nbsp; (+39) 356-323-2351</span>
-              <span><i class="fas fa-envelope"></i> &nbsp; PizzaR@gmail.com.com</span>
-            </div>
-            <div class="socials">
-              <a href="https://www.facebook.com/pizzarevolutionpleonardo/"><i class="fab fa-facebook"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-          </div>
-    
-          <div class="footer-section links">
-            <h2>Quick Links</h2>
-            <br>
-            <ul>
-              <li><a href="#">La Pizza</a></li>
-                    <li><a href="#">Chi Siamo</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Ordina</a></li>
-                    <li><a href="#">Contattaci</a></li>
-                  </ul>
-          </div>
-    
-          <form action="" class="footer-section newsletter">
-            <h2>Subscribe Our Newsletter & Join US</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <div class="newsletter-box">
-                <i class="fas fa-envelope"></i>
-                <input class="emailbox" type="email" name="" value="" placeholder="Enter your email id">
-                <button type="button" name="button">Subscribe</button>
-            </div>
-            
-          </div>
-          <div class="footer-bottom">
-            © PizzaRevolution.com | by Angi S.R.L.
-          </div>
-        </div>
-    
-        </footer>
-      </div>
-</body>
+					
+	          	<div class="footer-bottom">
+					© PizzaRevolution.com | by Angi S.R.L.
+				</div>
+	       	</div>
+	    </footer>
+		</div>
+	</body>
 </html>
