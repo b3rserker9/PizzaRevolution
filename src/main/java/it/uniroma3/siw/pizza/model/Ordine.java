@@ -45,6 +45,9 @@ public class Ordine {
 	@ManyToMany
 	private List<Pizza> pizze;
 	
+	@Column
+	private double totale;
+	
 	public Ordine() {
 		this.pizze = new ArrayList<Pizza>();
 	}

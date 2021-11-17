@@ -114,21 +114,14 @@ public class runner  {
 		this.pizzaserv.inserisci(p4);
 
 		Fattorino f1 = new Fattorino();
-		f1.setNome("Francesco");
+		f1.setNome("Giuseppe");
 
 		Fattorino f2 = new Fattorino();
-		f2.setNome("Luca");
-
-		Fattorino f3 = new Fattorino();
-		f3.setNome("Marco");
-
-		Fattorino f4 = new Fattorino();
-		f4.setNome("Matteo");
+		f2.setNome("Alessandra");
 
 		this.fattoriniService.inserisci(f1);
 		this.fattoriniService.inserisci(f2);
-		this.fattoriniService.inserisci(f3);
-		this.fattoriniService.inserisci(f4);
+
 		
 
 	}*/

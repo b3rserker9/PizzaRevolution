@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,7 @@ import it.uniroma3.siw.pizza.service.FattorinoService;
 import it.uniroma3.siw.pizza.service.IngredienteService;
 import it.uniroma3.siw.pizza.service.OrdineService;
 import it.uniroma3.siw.pizza.service.PizzaService;
+import net.bytebuddy.asm.Advice.This;
 
 
 
@@ -94,10 +96,12 @@ public class MainController {
 		model.addAttribute("role",this.credentialsService.getRoleAuthenticated());
 			return "menuForm";
 	}
+	
 	@RequestMapping(value="/ordine", method = RequestMethod.POST)
 	public String newOrdine(@ModelAttribute("ordine") Ordine ordine, Model model) {
 		boolean c=true;
 		ordine.setData(new SimpleDateFormat("dd/MMM/yyyy").format(new Date()));
+		ordine.setTotale(ordine.getTotale());
 		for(Fattorino f : this.fattoriniService.tutti()) {
 			if(f.getOrdini().isEmpty()) {
 				ordine.setFattorino(f);
@@ -148,6 +152,41 @@ public class MainController {
 		System.out.println(pizzaservice.tutte());
 		
 		return "menu";
+	}
+	
+	@GetMapping(value = "/fattorini")
+	public String fattorini(Model model) {
+		model.addAttribute("fattorini",fattoriniService.tutti());
+		return "fattorini";
+	}
+	
+	@GetMapping(value = "/storico")
+	public String storico(Model model) {
+		double pippo = 0;
+		for(Ordine o : ordineservice.tutti()) {
+			System.out.println(o.getTotale());
+			pippo+=o.getTotale();
+		}
+		model.addAttribute("ordine",ordineservice.tutti());
+		model.addAttribute("pippo",pippo);		
+		return "StoricoOrdini";
+	}
+	
+	@GetMapping(value = "/det_ordine/{id}")
+	public String det_ordine(@PathVariable("id") Long id, Model model) {
+		Ordine ordine = ordineservice.ordinePerId(id);
+		model.addAttribute("ordine",ordine);
+
+		return "ordine";
+	}
+	
+	public double totaleordine(List<Ordine> ordini) {
+		double totale=5;
+		for(Ordine o : ordini) {
+			totale=+o.getTotale();
+		}
+		return totale;
+		
 	}
 	
 	public Utente getUtente() {

@@ -1,0 +1,34 @@
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/admin.html :: headerfiles(title='Fattorini')"> 
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
+</head>
+<header th:replace="fragments/admin.html :: header"></header>
+<div th:replace="accountOption :: modal">modal</div>
+<style>
+
+</style>
+
+<body>
+
+<table class="tabella">
+  <tr>
+  <th>Fattorini</th>
+  <th>Telefono</th>
+  <th>Veicolo</th>
+  </tr>
+  <div th:each="f : ${fattorini}">
+  <tr>
+  <td th:text="${f.nome}">ordine</td>
+  <td th:text="${f.telefono}">orario</td>
+  <td th:text="${f.tipo_veicolo}">orario</td>
+  </tr>
+  </div>
+</table>
+
+</body>
+</html>
