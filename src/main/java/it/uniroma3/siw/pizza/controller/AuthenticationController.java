@@ -30,7 +30,7 @@ public class AuthenticationController {
 	@Autowired
 	private CredentialsService credentialsService;
 	
-	@RequestMapping(value = "/register", method = RequestMethod.GET) 
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new Utente());
 		model.addAttribute("credentials", new Credentials());

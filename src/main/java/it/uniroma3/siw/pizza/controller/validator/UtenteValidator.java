@@ -20,7 +20,7 @@ public class UtenteValidator implements Validator {
         Utente user = (Utente) o;
         String nome = user.getNome().trim();
         String cognome = user.getCognome().trim();
-        String indirizzo= user.getIndirizzo().trim();
+
 
         if (nome.isEmpty())
             errors.rejectValue("nome", "required");
@@ -31,9 +31,6 @@ public class UtenteValidator implements Validator {
             errors.rejectValue("cognome", "required");
         else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
             errors.rejectValue("cognome", "size");
-        
-        if (indirizzo.isEmpty())
-            errors.rejectValue("indirizzo", "required");
     }
 
     @Override

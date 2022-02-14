@@ -1,54 +1,106 @@
    <!DOCTYPE html>
+<style>
+html { 
+  background: url("/images/pexels-vinicius-benedit-1082343.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments/base.html :: headerfiles(title='Registrazione Utente')"> 
 <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
 
-<style>
-</style>
+
 </head>
 <body>
-<div class="bgded">
-<header th:replace="fragments/base.html :: header"></header>
-   <div id="register" class="overlay2">
-       <div class="login-r">
-        <div class="head-login">
-        <img src="images/avatar.png" alt=""></div>
-        
-        <form th:action="@{/register}" method="POST">
-        
-        <div class="credentials">
-            <div class="group1">
-            <div class="nome">
-                    <input type="text" placeholder="nome" required th:field="${user.nome}"/>
-                    <h6 class="heading" th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}" th:style="'color:white'"></h6>
-            </div>    
-            <div class="p cognome">
-                <input type="text" placeholder="Cognome"  required th:field="${user.cognome}"/>
-                <h6 class="heading" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" th:style="'color:white'"></h6>
-        </div>  
-        <div class="p email">
-            <input type="text" placeholder="Indirizzo"  required th:field="${user.indirizzo}"/>
-            <h6 class="heading" th:if="${#fields.hasErrors('user.indirizzo')}" th:errors="${user.indirizzo}" th:style="'color:white'"></h6>
-					
-    </div> 
-            <div class="p username">
-            <input type="text" placeholder="Username"  required th:field="${credentials.username}"/>
-            <h6 class="heading" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:white'"></h6>
-        </div>
 
-        <div class="p password">
-            <input type="password" placeholder="Password"  required th:field="${credentials.password}"/>
-            <h6 class="heading" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:white'"></h6>
+<header th:replace="fragments/base.html :: header"></header>
+
+   <div class="container_register">
+    <div class="title">Registration</div>
+    <div class="content">
+    <form th:action="@{/register}" method="POST">
+    <input id='step2' type='checkbox' style="opacity: 0;">
+    <input id='step3' type='checkbox' style="opacity: 0;">
+        <div id="part1" class="user-details credentials">
+          <div class="input-box">
+            <span class="details">Nome</span>
+            <input type="text" placeholder="Enter your name" th:field="${user.nome}" required>
+          	<span class="errors" th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}" ></span>
+          </div>
+          <div class="input-box">
+            <span class="details">Cognome</span>
+            <input type="text" placeholder="Enter your username" th:field="${user.cognome}" required>
+            <span class="errors" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" ></span>
+		 </div>
+         
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" placeholder="Enter your username" th:field="${credentials.username}" required>
+            <span class="errors" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" ></span>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" placeholder="Enter your password" th:field="${credentials.password}" required>
+            <span class="errors" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" ></span>
+          </div>
+          <div class="button_next" style="height: 45px;">
+           <label for='step2' id="continue-step2" class="continue">
+            <div style="font-size: 25px;">Continue</div>
+          </label>
         </div>
-    </div>
-    </div>
-    <div class="end-part">
-    <button  type="submit" class="btn_login" >Register</button></div>
-        </form>
+       
+        </div>
+       
         
+
+    <div id="next" class="user-details address">
+	 <div class="input-box">
+            <span class="details">Indirizzo</span>
+            <input type="text" placeholder="Enter your adress" th:field="${user.indirizzo.via}" required>
+            <span class="errors" th:if="${#fields.hasErrors('user.indirizzo.via')}" th:errors="${user.indirizzo.via}" ></span>
+          </div>
+          <div class="input-box numeri">
+            <span class="details">Numero civico</span>
+            <input type="number" placeholder="N civico" th:field="${user.indirizzo.n_civico}" required>
+          </div>
+          <div class="input-box numeri">
+            <span class="details">	Interno</span>
+            <input type="number" placeholder="Interno" th:field="${user.indirizzo.interno}" max="999"  required>
+          </div>
+           <div class="input-box numeri">
+            <span class="details">Scala</span>
+            <input type="text" placeholder="Scala" th:field="${user.indirizzo.scala}" max-length="1" required>
+          </div>
+          <div class="input-box numeri">
+            <span class="details">Cap</span>
+            <input type="number" placeholder="CAP" th:field="${user.indirizzo.cap}" max="99999" required>
+          </div>
+           <div class="input-box tel">
+            <span class="details">Telefono</span>
+            <input type="number" placeholder="Telefono" th:field="${user.telefono}" min="3000000000" max="3999999999" required>
+            <span class="errors" th:if="${#fields.hasErrors('user.telefono')}" th:errors="${user.indirizzo.via}" ></span>
+          </div>
+          <div class="button">
+         
+          <div>
+          <label for='step2' id="back-step2" class="back">
+            <div class="back" role="button" style=" background: linear-gradient(135deg, rgb(0, 128, 192), rgb(0, 128, 255));font-size: 25px;">Back</div>
+          </label>
+          </div>
+           <div>
+          <input type="submit" value="Register">
+          </div>
+        </div>
         
+     
+    
     </div>
+    </form>
+    </div>
+    
   </div>
-</div>
     </body>
 </html>

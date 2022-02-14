@@ -79,3 +79,10 @@
 .image:hover .test{
     opacity: 1;
 }
+
+.bgded {
+    height: 100%;
+    width: 100%;
+    background-image: url(/images/pexels-vinicius-benedit-1082343.jpg);
+    background-size: cover;
+}

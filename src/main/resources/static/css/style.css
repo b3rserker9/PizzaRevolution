@@ -4,19 +4,14 @@
 }
 html, body {
     overflow-x: hidden;
+    font-family: 'Titillium Web', sans-serif;
 }
 body{
     text-align: center;
   }
   
-  .bgded{
-	height: 100%;
-	width: 100%;
-	background-image: url('/images/pexels-vinicius-benedit-1082343.jpg');
-    background-size: cover;
-    }
-	
-	
+/*	#############################################################
+    ###################### LOGIN ################################ */
 	
   .login-trigger {
     font-weight: bold;
@@ -72,47 +67,14 @@ body{
           font-family: 'Titillium Web', sans-serif;
           text-decoration: none;
       }
-.login-r {
-    text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: auto;
-    
-    width: 25%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 25px;
-    background-color: rgba(0,0,0,.5);
-    color: #fff;
-    font-family: 'Titillium Web', sans-serif;
-    
+
+.login .head-login{	 
+    height: 30%; 
 }
 
-.login .head-login{
-	 
-    font-family: 'Titillium Web', sans-serif;
-    height: 30%;
-
-    
-}
 .login .head-login img{
-
     max-height: 100%;
     max-width: 100%;
-}
-.login-r .head-login{
-    font-family: 'Titillium Web', sans-serif;
-
-    
-}
-.login-r .head-login img{
-
-    max-height: 100%;
-    max-width: 100%;
-    height: 220px;
 }
 
 .login .credentials{
@@ -120,14 +82,10 @@ body{
 }
 
 
-.login-r .credentials{
-	
-   height: 90%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
 
+.credentials .nome{
+	border: 2px solid black;
+}
  .credentials .password{
     margin-top: 70px;
 }
@@ -168,15 +126,11 @@ select:-webkit-autofill:focus {
     color: white;
     opacity: 0.7;
 }
+
 .end-part{
-	
-    display: flex;
-   align-items: center;
-   justify-content: center;
-   flex: 10%;
-   
+   flex: 10%; 
 }
-.btn_login{
+ .btn_login{
 	margin-top: 35px;
     cursor:pointer;
         font-weight: bold;
@@ -190,7 +144,168 @@ select:-webkit-autofill:focus {
     color: black;
 }
   
+ /*	#############################################################
+    ###################### REGISTER ################################ */
+.container_register{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+  max-width: 700px;
+  width: 100%;
+  background-color:rgba(0,0,0,0.6);
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+.container_register .title{
+  font-size: 30px;
+  font-weight: 500;
+  position: relative;
+  color: white;
+}
+.container_register .title::before {
+    content: "";
+    position: absolute;
+    left: 244px;
+    bottom: 0;
+    height: 3px;
+    width: 202px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #f71414, #ff8d00);
+}
+
+
+.content .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+
+
+.content .input-box{
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+}
+
+.content  .numeri{
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 170px);
+}
+
+
+.numeri input::-webkit-outer-spin-button,
+.numeri input::-webkit-inner-spin-button  {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.tel input::-webkit-outer-spin-button,
+.tel input::-webkit-inner-spin-button  {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.content  span.details{
+  display: block;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: white;
+}
+.user-details  input,.user-details  textarea{
+     text-transform: capitalize;
+    width: 90%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #3d3c3c;
+    background-color: rgba(0,0,0,.5);
+    background: transparent;
+    font-size: 20px;
+    color: white;
+}
+.user-details .numeri input,.user-details .numeri textarea{
+	width: 40%;
+}
+ .content .button{
+	display: flex;
+	justify-content: space-between;
+   height: 45px;
+   width: 100%;
+   margin: 35px 0
+ }
  
+ .content .button div{
+	flex: 50%;
+}
+ a:-webkit-any-link {
+	text-decoration: none;
+}
+ .content .button input,.content .button_next, .content .button .back{
+   height: 100%;
+   width: 100%;
+   border-radius: 5px;
+   border: none;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 500;
+   letter-spacing: 1px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   background: linear-gradient(135deg, #D7932C, #FF9A00);
+ }
+ 
+ .content .button input:hover, .content .button_next:hover, .content .button .back:hover{
+   transform: scale(0.99); 
+  background: linear-gradient(-135deg, rgb(255, 128, 0), rgb(255, 128, 64));
+  }
+ 
+.button_back{
+	border: 2px solid black;
+}
+
+#next {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+#step2:checked ~ #next {
+  opacity: 1;
+  height: auto;
+}
+#step2:checked ~ #part1 {
+  opacity: 0;
+  display: none;
+}
+
+ @media(max-width: 584px){
+ .container{
+  max-width: 100%;
+}
+.content .user-details .input-box{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .content .category{
+    width: 100%;
+  }
+  .content  .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .user-details::-webkit-scrollbar{
+    width: 5px;
+  }
+  }
+  @media(max-width: 459px){
+  .container .content .category{
+    flex-direction: column;
+  }
+}
 
 .first{
     width: 100%;
