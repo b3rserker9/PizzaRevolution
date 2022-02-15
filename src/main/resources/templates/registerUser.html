@@ -59,24 +59,23 @@ html {
     <div id="next" class="user-details address">
 	 <div class="input-box">
             <span class="details">Indirizzo</span>
-            <input type="text" placeholder="Enter your adress" th:field="${user.indirizzo.via}" required>
-            <span class="errors" th:if="${#fields.hasErrors('user.indirizzo.via')}" th:errors="${user.indirizzo.via}" ></span>
+            <input type="text" placeholder="Enter your adress" th:field="${indirizzo.via}" required>
           </div>
           <div class="input-box numeri">
             <span class="details">Numero civico</span>
-            <input type="number" placeholder="N civico" th:field="${user.indirizzo.n_civico}" required>
+            <input type="number" placeholder="N civico" th:field="${indirizzo.n_civico}" required>
           </div>
           <div class="input-box numeri">
             <span class="details">	Interno</span>
-            <input type="number" placeholder="Interno" th:field="${user.indirizzo.interno}" max="999"  required>
+            <input type="number" placeholder="Interno" th:field="${indirizzo.interno}" max="999"  required>
           </div>
            <div class="input-box numeri">
             <span class="details">Scala</span>
-            <input type="text" placeholder="Scala" th:field="${user.indirizzo.scala}" max-length="1" required>
+            <input type="text" placeholder="Scala" th:field="${indirizzo.scala}" max-length="1" required>
           </div>
           <div class="input-box numeri">
             <span class="details">Cap</span>
-            <input type="number" placeholder="CAP" th:field="${user.indirizzo.cap}" max="99999" required>
+            <input type="number" placeholder="CAP" th:field="${indirizzo.cap}" max="99999" required>
           </div>
            <div class="input-box tel">
             <span class="details">Telefono</span>

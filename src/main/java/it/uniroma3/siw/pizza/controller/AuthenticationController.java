@@ -16,6 +16,7 @@ import it.uniroma3.siw.pizza.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.pizza.controller.validator.UtenteValidator;
 import it.uniroma3.siw.pizza.model.Credentials;
 import it.uniroma3.siw.pizza.model.Utente;
+import it.uniroma3.siw.pizza.model.indirizzo;
 import it.uniroma3.siw.pizza.service.CredentialsService;
 
 @Controller
@@ -33,6 +34,7 @@ public class AuthenticationController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new Utente());
+		model.addAttribute("indirizzo", new indirizzo());
 		model.addAttribute("credentials", new Credentials());
 		return "registerUser";
 	}
@@ -61,7 +63,7 @@ public class AuthenticationController {
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)
     public String registerUser(@ModelAttribute("user") Utente user,
                  BindingResult userBindingResult,
-                 @ModelAttribute("credentials") Credentials credentials,
+                 @ModelAttribute("credentials") Credentials credentials, @ModelAttribute("indirizzo") indirizzo indirizzo,
                  BindingResult credentialsBindingResult,
                  Model model) {
 
@@ -69,7 +71,7 @@ public class AuthenticationController {
         this.credentialsValidator.validate(credentials, credentialsBindingResult);
 
         if(!userBindingResult.hasErrors() && ! credentialsBindingResult.hasErrors()) {
-
+        	user.setIndirizzo(indirizzo);
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
             return "index";

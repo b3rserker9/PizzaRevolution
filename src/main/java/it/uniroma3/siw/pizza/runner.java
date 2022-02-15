@@ -49,19 +49,6 @@ public class runner  {
 	
 	/*@PostConstruct
 	public void popola() {
-		
-		Utente u = new Utente();
-		Credentials c = new Credentials();
-		u.setNome("Yousef");
-		u.setCognome("Ali");
-		u.setIndirizzo("Via giovanni aldini");
-		c.setUser(u);
-		c.setUsername("admin");
-		c.setPassword("admin1");
-		this.credentialsService.saveAdmin(c);
-		this.utenteservice.saveUser(u);
-		
-
 
 		Pizza p1 = new Pizza();
 		p1.setNome("Margherita");
