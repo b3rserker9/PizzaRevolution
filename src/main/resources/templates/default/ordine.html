@@ -200,16 +200,15 @@ input {
       <div th:each="p : ${tuttePizze}">
       <div class="menu-item">
           <img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
-         <div class="menu-text-add">
+         <div class="menu-text-add" style="width: 100%;">
           <div class="menu-item-text">
             <h3 class="menu-item-heading">
               <span class="menu-item-name"th:text="${p.nome}">pizza</span>
               <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
             </h3>
-            <p class="menu-item-description">
-              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
-              congue eu mauris nec, pretium tincidunt nulla.
-            </p>
+            <div class="menu-item-description">
+              <p th:each="i : ${p.ingredientiBase}" th:text="${i.nome}"></p>
+            </div>
           </div>
          <div class="add" style="float: right;">
               
@@ -220,37 +219,6 @@ input {
         </div>
             
       </div>
-      </div>
-      <h2 class="menu-group-heading">
-        Dessert
-      </h2>
-      <div class="menu-group">
-        <div class="menu-item">
-          <img class="menu-item-image" src="https://dummyimage.com/600x400/f00/000" alt="Bruschetta">
-          <div class="menu-item-text">
-            <h3 class="menu-item-heading">
-              <span class="menu-item-name">Bruschetta</span>
-              <span class="menu-item-price">$12.90</span>
-            </h3>
-            <p class="menu-item-description">
-              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
-              congue eu mauris nec, pretium tincidunt nulla.
-            </p>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-image" src="https://dummyimage.com/600x400/00f/000" alt="Bruschetta">
-          <div class="menu-item-text">
-            <h3 class="menu-item-heading">
-              <span class="menu-item-name">Bruschetta</span>
-              <span class="menu-item-price">$12.90</span>
-            </h3>
-            <p class="menu-item-description">
-              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
-              congue eu mauris nec, pretium tincidunt nulla.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -307,23 +275,7 @@ input {
 					</div>
 		        </div>
 	        
-            	<hr>
-            	<div>
-	            	<div style="display: flex; padding-top: 20px;" th:each="p : ${tuttePizze}">
-	            	<img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
-				          <div class="menu-item-text">
-				            <h3 class="menu-item-heading">
-				              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
-				              <div class="menu-item-description">
-					              <div th:each=" i: ${p.ingredientiBase}">
-					              	<p th:text="${i.nome} + ','"> </p>
-					              </div>
-					           </div>
-				              <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
-				            </h3>				       
-	            	</div>
-            	</div>
-	        </div>
+            	
 	        </div>
 	    </div> 
 </body>
