@@ -7,28 +7,139 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
 </head>
-<header th:replace="fragments/admin.html :: header"></header>
-<div th:replace="accountOption :: modal">modal</div>
 <style>
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 150px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  padding-right: 10px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input {
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      outline: none;
+    }
+
+    .bottone{
+        background-color: black;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        cursor: pointer;
+       }
 </style>
 
 <body>
+<header th:replace="fragments/admin.html :: header"></header>
+<div th:replace="accountOption :: modal">modal</div>
+<div style="text-align: center; padding-top: 50px;">
+	<table class="tabella">
+		  <tr>
+		  <th>Fattorini</th>
+		  <th>Telefono</th>
+		  <th>Veicolo</th>
+		  </tr>
+		  <div th:each="f : ${fattorini}">
+		  <tr>
+		  <td th:text="${f.nome}">ordine</td>
+		  <td th:text="${f.telefono}">orario</td>
+		  <td th:text="${f.tipo_veicolo}">orario</td>
+		  </tr>
+		  </div>
+	</table>
+	<p><button class ="bottone" id="myBtn">Aggiungi</button></p>
+</div>
 
-<table class="tabella">
-  <tr>
-  <th>Fattorini</th>
-  <th>Telefono</th>
-  <th>Veicolo</th>
-  </tr>
-  <div th:each="f : ${fattorini}">
-  <tr>
-  <td th:text="${f.nome}">ordine</td>
-  <td th:text="${f.telefono}">orario</td>
-  <td th:text="${f.tipo_veicolo}">orario</td>
-  </tr>
-  </div>
-</table>
+<!-- The Modal -->
+				<div id="myModal" class="modal">
+				
+				  <!-- Modal content -->
+				  <div class="modal-content">
+				    <span class="close">&times;</span>
+				    <div>
+				      <form th:action="@{/newFattorino}" method="POST" th:object="${fattorino}">
+				      	
+        					
+							<label for="fname" class="scritte">Nome</label><br>
+			                <input type="text" id="fname" name="nome"  th:field="*{nome}" placeholder="Nome"><br>
+			            
+			                <label for="lname" class="scritte">Telefono</label><br>
+			                <input type="text" id="lname" name="cognome" th:field="*{telefono}"><br>
+			                
+			                 <label for="lname" class="scritte">Veicolo</label><br>
+			                <input type="text" id="lname" name="cognome" th:field="*{tipo_veicolo}"><br>		                      
+ 
+							<span><button type="submit">Crea</button></span>
+						</form>
+					    </div>
+					  </div>
+					  
+					  
+					</div>
 
 </body>
+
+<script>
+		// Get the modal
+		var modal = document.getElementById("myModal");
+		
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+		
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		
+		// When the user clicks the button, open the modal 
+		btn.onclick = function() {
+		  modal.style.display = "block";
+		}
+		
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+		  modal.style.display = "none";
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+		    modal.style.display = "none";
+		  }
+		}
+	</script>
 </html>

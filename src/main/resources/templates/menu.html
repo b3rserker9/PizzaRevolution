@@ -96,10 +96,38 @@
       height: 125px;
     }
   }
+  
+  
+   .stile-padding-large {
+            padding: 90px 24px!important;
+        }
+
+        .stile-margin-top {
+            margin-top: 16px!important;
+        }
+
+        .stile-content {
+            max-width: 70%;
+        }
+
+        .stile-content, .w3-auto {
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        .stile-light-grey{
+        color: #000!important;
+        background-color: #e38924!important;
+        }
+        .stile-padding-32 {
+			margin-bottom: 150px;
+            padding-top: 32px!important;
+            padding-bottom: 32px!important;
+        }
 
 </style>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  
 <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -109,64 +137,34 @@
 <body>
 
 		<header th:replace="fragments/base.html :: header"></header>
-  <div class="container-menu">
-    <div class="menu">
-      <h2 class="menu-group-heading">
-        Pizza
-      </h2>
-      <div class="menu-group">
-      <div th:each="p : ${Pizze}">
-      <div class="menu-item">
-          <img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
-          <div class="menu-item-text">
-            <h3 class="menu-item-heading">
-              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
-              <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
-            </h3>
-            <div class="menu-item-description">
-              <div th:each=" i: ${p.ingredientiBase}">
-              <p th:text="${i.nome} + ','"> </p>
-              </div>
-            </div>
-          </div>
-        </div>
-            
-      </div>
-      </div>
-      <h2 class="menu-group-heading">
-        Dessert
-      </h2>
-      <div class="menu-group">
-        <div class="menu-item">
-          <img class="menu-item-image" src="https://dummyimage.com/600x400/f00/000" alt="Bruschetta">
-          <div class="menu-item-text">
-            <h3 class="menu-item-heading">
-              <span class="menu-item-name">Bruschetta</span>
-              <span class="menu-item-price">$12.90</span>
-            </h3>
-            <p class="menu-item-description">
-              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
-              congue eu mauris nec, pretium tincidunt nulla.
-            </p>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-image" src="https://dummyimage.com/600x400/00f/000" alt="Bruschetta">
-          <div class="menu-item-text">
-            <h3 class="menu-item-heading">
-              <span class="menu-item-name">Bruschetta</span>
-              <span class="menu-item-price">$12.90</span>
-            </h3>
-            <p class="menu-item-description">
-              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
-              congue eu mauris nec, pretium tincidunt nulla.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+ 
+		<!-- Page content -->
+	    <div class="stile-content stile-padding-large stile-margin-top">
+	        <div class="stile-light-grey stile-padding-large stile-padding-32 stile-margin-top">
+	        <div style="padding-bottom: 40px;">
+	            <div>
+	            	<h1> Menu</h1>
+	            </div>
+	        </div>
+            	<hr>
+            	<div>
+	            	<div style="display: flex; padding-top: 20px;" th:each="p : ${Pizze}">
+	            	<img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
+				          <div class="menu-item-text">
+				            <h3 class="menu-item-heading">
+				              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
+				              <div class="menu-item-description">
+					              <div th:each=" i: ${p.ingredientiBase}">
+					              	<p th:text="${i.nome} + ','"> </p>
+					              </div>
+					           </div>
+				              <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
+				            </h3>				       
+	            	</div>
+            	</div>
+	        </div>
+	        </div>
+	    </div> 
 </body>
 
 </html>

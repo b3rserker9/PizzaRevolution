@@ -85,16 +85,15 @@ public class MainController {
 	@RequestMapping(value = "/contattaciFree", method = RequestMethod.GET)
 	public String contattaciFree(Model model) {
 		return "contattaciFree";}
-		
+	
 	@RequestMapping(value = "/ordine", method = RequestMethod.GET)
 		public String ordine(Model model) {
-		model.addAttribute("Pizze", pizzaservice.tutte());
-		System.out.println(pizzaservice.tutte());
-		model.addAttribute("utente", this.getUtente());	
-		Ordine ordine = new Ordine();
-		model.addAttribute("ordine", ordine);
+		System.out.println("SONO QUI NELLLE PIZZE");
+		model.addAttribute("tuttePizze", pizzaservice.tutte());
+		model.addAttribute("pizza" , new Pizza());
+		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
 		model.addAttribute("role",this.credentialsService.getRoleAuthenticated());
-			return "menuForm";
+		return "menuForm";
 	}
 	
 	@RequestMapping(value="/ordine", method = RequestMethod.POST)
@@ -130,7 +129,7 @@ public class MainController {
 	}
 	
 	@PostMapping(value = "/newpizza")
-	public String newPizza(@ModelAttribute("newpizza") Pizza pizza, @RequestParam("file") MultipartFile file, Model model) throws IllegalStateException, IOException {
+	public String newPizza(@ModelAttribute("pizza") Pizza pizza, @RequestParam("file") MultipartFile file, Model model) throws IllegalStateException, IOException {
 		this.pizzaservice.inserisci(pizza);
 		String baseDir="C:\\Users\\utente\\Documents\\workspace-spring-tool-suite-4-4.11.1.RELEASE\\PizzaRevolution\\src\\main\\resources\\static\\images\\";
 			file.transferTo(new File(baseDir + pizza.getNome()+".jpg"));
@@ -138,26 +137,26 @@ public class MainController {
 		return "admin/home";
 	}
 	
-	@GetMapping(value = "/newpizza")
-	public String PizzaF(Model model) {
-		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
-		Pizza pizza= new Pizza();
-		model.addAttribute("pizza" , pizza);
-		return "addpizza";
-	}
 	
 	@GetMapping(value = "/menu")
 	public String menu(Model model) {
 		model.addAttribute("Pizze",this.pizzaservice.tutte());
-		System.out.println(pizzaservice.tutte());
-		
 		return "menu";
 	}
 	
 	@GetMapping(value = "/fattorini")
 	public String fattorini(Model model) {
 		model.addAttribute("fattorini",fattoriniService.tutti());
+		model.addAttribute("fattorino",new Fattorino());
 		return "fattorini";
+	}
+	
+	@PostMapping(value = "/newFattorino")
+	public String newFattorino(@ModelAttribute("fattorino") Fattorino fattorino, Model model){
+		
+		fattoriniService.addFattorino(fattorino);
+		
+		return "admin/home";
 	}
 	
 	@GetMapping(value = "/storico")

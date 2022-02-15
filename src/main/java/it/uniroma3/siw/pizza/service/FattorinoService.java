@@ -43,4 +43,8 @@ public class FattorinoService {
 
 	}
 
+	public void addFattorino(Fattorino fattorino) {
+		this.fattorinorepository.save(fattorino);
+	}
+
 }
