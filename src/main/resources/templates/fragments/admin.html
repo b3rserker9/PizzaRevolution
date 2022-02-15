@@ -5,20 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title th:text="${title}"></title>
 	<link rel="shortcut icon" href="images/pizza_icon.ico" />
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-	<link th:href="@{/css/admin.css}" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital@1&family=News+Cycle&family=Noto+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+	<link th:href="@{/css/admin.css}" rel="stylesheet">  
 	<script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="box-area">
@@ -30,9 +18,9 @@
 				</div>
 				  <ul class="nav">
                     <li><a href="#">LA NOSTRA PIZZA</a></li>
-                    <li><a th:href="@{/fattorini}">FATTORINI</a></li>
-                    <li><a th:href="@{/ordine}">MENU</a></li>
-                    <li><a th:href="@{/storico}">STORICO ORDINI</a></li>
+                    <li><a th:href="@{admin/fattorini}">FATTORINI</a></li>
+                    <li><a th:href="@{admin/ordine}">MENU</a></li>
+                    <li><a th:href="@{admin/storico}">STORICO ORDINI</a></li>
                     <li><a href="#">CONTATTACI</a></li>
                   </ul>
                   <div class="btn">

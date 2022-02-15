@@ -86,17 +86,20 @@ public class MainController {
 	public String contattaciFree(Model model) {
 		return "contattaciFree";}
 	
-	@RequestMapping(value = "/ordine", method = RequestMethod.GET)
+	
+	
+	
+	@RequestMapping(value = "/default/ordine", method = RequestMethod.GET)
 		public String ordine(Model model) {
 		System.out.println("SONO QUI NELLLE PIZZE");
 		model.addAttribute("tuttePizze", pizzaservice.tutte());
 		model.addAttribute("pizza" , new Pizza());
 		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
 		model.addAttribute("role",this.credentialsService.getRoleAuthenticated());
-		return "menuForm";
+		return "/default/ordine";
 	}
 	
-	@RequestMapping(value="/ordine", method = RequestMethod.POST)
+	@RequestMapping(value="/default/ordine", method = RequestMethod.POST)
 	public String newOrdine(@ModelAttribute("ordine") Ordine ordine, Model model) {
 		boolean c=true;
 		ordine.setData(new SimpleDateFormat("dd/MMM/yyyy").format(new Date()));
@@ -125,10 +128,12 @@ public class MainController {
 			}
 		}
 		this.ordineservice.inserisci(ordine);
-		return "home";
+		return "/default/home";
 	}
 	
-	@PostMapping(value = "/newpizza")
+	
+	
+	@PostMapping(value = "/admin/newpizza")
 	public String newPizza(@ModelAttribute("pizza") Pizza pizza, @RequestParam("file") MultipartFile file, Model model) throws IllegalStateException, IOException {
 		this.pizzaservice.inserisci(pizza);
 		String baseDir="C:\\Users\\utente\\Documents\\workspace-spring-tool-suite-4-4.11.1.RELEASE\\PizzaRevolution\\src\\main\\resources\\static\\images\\";
@@ -144,22 +149,22 @@ public class MainController {
 		return "menu";
 	}
 	
-	@GetMapping(value = "/fattorini")
+	@GetMapping(value = "/admin/fattorini")
 	public String fattorini(Model model) {
 		model.addAttribute("fattorini",fattoriniService.tutti());
 		model.addAttribute("fattorino",new Fattorino());
-		return "fattorini";
+		return "admin/fattorini";
 	}
 	
-	@PostMapping(value = "/newFattorino")
+	@PostMapping(value = "/admin/newFattorino")
 	public String newFattorino(@ModelAttribute("fattorino") Fattorino fattorino, Model model){
 		
 		fattoriniService.addFattorino(fattorino);
 		
-		return "admin/home";
+		return "redirect:/admin/fattorini";
 	}
 	
-	@GetMapping(value = "/storico")
+	@GetMapping(value = "/admin/storico")
 	public String storico(Model model) {
 		double pippo = 0;
 		for(Ordine o : ordineservice.tutti()) {
@@ -168,15 +173,15 @@ public class MainController {
 		}
 		model.addAttribute("ordine",ordineservice.tutti());
 		model.addAttribute("pippo",pippo);		
-		return "StoricoOrdini";
+		return "admin/StoricoOrdini";
 	}
 	
-	@GetMapping(value = "/det_ordine/{id}")
+	@GetMapping(value = "/admin/det_ordine/{id}")
 	public String det_ordine(@PathVariable("id") Long id, Model model) {
 		Ordine ordine = ordineservice.ordinePerId(id);
 		model.addAttribute("ordine",ordine);
 
-		return "ordine";
+		return "/admin/ordine";
 	}
 	
 	public double totaleordine(List<Ordine> ordini) {
