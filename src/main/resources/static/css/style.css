@@ -771,10 +771,14 @@ header {
     font-family: 'Titillium Web', sans-serif;
   }
   
+  .menu-text-add{
+	
+}
+  
+  
   .add input{
-    margin-top: 90px;
-    width: 45px; height: 40px;
-    padding-bottom: 45px;
+    width: 60px; 
+    height: 60px;
     border-radius: 50%; 
     text-align: center;
     transition: box-shadow .3s;
@@ -782,14 +786,25 @@ header {
     cursor: pointer;
     border: 0;
     appearance: none;
+    position: relative;
    }
+   
+   .add input:hover{
+	background: white;
+}
+   
   .add input[type="checkbox"]::after{
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
        font-size: 40px;
        content: '+';
        color: rgb(0, 0, 0);
    }
   
-  .add input:checked{ box-shadow: inset 0 0 0 20px #32a852;    
+  .add input:checked{ 
+	box-shadow: inset 0 0 0 33px #32a852;    
     content: '+';
     color: white;
 }

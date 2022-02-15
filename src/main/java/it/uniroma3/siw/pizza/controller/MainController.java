@@ -88,9 +88,9 @@ public class MainController {
 	
 	@RequestMapping(value = "/ordine", method = RequestMethod.GET)
 		public String ordine(Model model) {
-		System.out.println("SONO QUI NELLLE PIZZE");
 		model.addAttribute("tuttePizze", pizzaservice.tutte());
 		model.addAttribute("pizza" , new Pizza());
+		model.addAttribute("ordine",new Ordine());
 		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
 		model.addAttribute("role",this.credentialsService.getRoleAuthenticated());
 		return "menuForm";
