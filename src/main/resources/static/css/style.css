@@ -262,6 +262,7 @@ background-color: white;
 }
 .first .img .slogan{
     font-family: 'Architects Daughter', cursive;
+    margin-bottom: 0;
 }
 .background{
     background-image: url("/images/8.jpg");
@@ -273,21 +274,72 @@ background-color: white;
 }
 .second{
     padding: 120px 0;
-    width: 100%;
-    margin-left: 25%;
+    width: 50%;
+    margin: auto;
     
 }
 
-.container{
+.container-second{
     display: flex;
     flex-wrap: wrap;
     padding: 0px 30px;
 }
-.row{
+.row-second{
     flex: 25%;
     max-width: 25%;
     padding: 0 10px;
 }
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  justify-content: center;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: 40%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+ -webkit-filter: grayscale(0) blur(0);
+	filter: grayscale(0) blur(0);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.column img:hover {
+-webkit-filter: grayscale(60%) blur(3px);
+	filter: grayscale(60%) blur(3px);
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
 .image{
     position: relative;
     text-align: center;
@@ -434,7 +486,7 @@ header {
 }
 .nav {
   flex: 60%;
-  text-align: center;
+  justify-content: center;
   font-family: 'Titillium Web', sans-serif;
     box-sizing: border-box;
     transition: all .35s ease;
