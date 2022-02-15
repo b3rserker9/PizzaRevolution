@@ -10,60 +10,122 @@ html, body {
 /*	#############################################################
     ###################### LOGIN ################################ */
 	
-  .container{
-height: 100%;
-align-content: center;
+  .login-trigger {
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to bottom right, #B05574, #F87E7B);
+    padding: 15px 30px;
+    border-radius: 30px;
+    position: relative; 
+    top: 50%;
+  }
+  
+ 
+   .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+     opacity: 0;
+    }
+    .overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+ .login{
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    margin: auto;
+    width: 15%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    font-family: 'Titillium Web', sans-serif;
+    
+}
+.x a{
+          position: fixed;
+          left: 85%;
+          top: 3%;
+          font-size: 30px;
+          color: red;
+          font-family: 'Titillium Web', sans-serif;
+          text-decoration: none;
+      }
+
+.login .head-login{	 
+    height: 30%; 
 }
 
-.card{
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+.login .head-login img{
+    max-height: 100%;
+    max-width: 100%;
 }
 
-.social_icon span{
-font-size: 60px;
-margin-left: 10px;
-color: #FFC312;
+.login .credentials{
+  flex: 50%;
 }
 
-.social_icon span:hover{
-color: white;
-cursor: pointer;
+
+
+.credentials .nome{
+	border: 2px solid black;
+}
+ .credentials .password{
+    margin-top: 70px;
+}
+.credentials .p{
+    margin-top: 70px;
 }
 
-.card-header h3{
-color: white;
+.credentials h6{
+	font-size: 20px;
+}
+.credentials  input,.credentials  textarea{
+    text-transform: capitalize;
+    width: 90%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #3d3c3c;
+    background-color: rgba(0,0,0,.5);
+    background: transparent;
+    font-size: 20px;
+    color: white;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	-webkit-text-fill-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-out 0s;
 }
 
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
+.credentials input::placeholder{
+    color: white;
+    opacity: 0.7;
 }
 
-.input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
-}
-
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
-
-}
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
-}
-
-.login_btn:hover{
-color: black;
-background-color: white;
+.end-part{
+   flex: 10%; 
 }
  .btn_login{
 	margin-top: 35px;
@@ -262,7 +324,6 @@ background-color: white;
 }
 .first .img .slogan{
     font-family: 'Architects Daughter', cursive;
-    margin-bottom: 0;
 }
 .background{
     background-image: url("/images/8.jpg");
@@ -274,72 +335,21 @@ background-color: white;
 }
 .second{
     padding: 120px 0;
-    width: 50%;
-    margin: auto;
+    width: 100%;
+    margin-left: 25%;
     
 }
 
-.container-second{
+.container{
     display: flex;
     flex-wrap: wrap;
     padding: 0px 30px;
 }
-.row-second{
+.row{
     flex: 25%;
     max-width: 25%;
     padding: 0 10px;
 }
-
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  justify-content: center;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
-
-/* Create four equal columns that sits next to each other */
-.column {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
-  max-width: 40%;
-  padding: 0 4px;
-}
-
-.column img {
-  margin-top: 8px;
-  vertical-align: middle;
-  width: 100%;
- -webkit-filter: grayscale(0) blur(0);
-	filter: grayscale(0) blur(0);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-
-.column img:hover {
--webkit-filter: grayscale(60%) blur(3px);
-	filter: grayscale(60%) blur(3px);
-}
-
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
-  .column {
-    -ms-flex: 50%;
-    flex: 50%;
-    max-width: 50%;
-  }
-}
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    -ms-flex: 100%;
-    flex: 100%;
-    max-width: 100%;
-  }
-}
-
 .image{
     position: relative;
     text-align: center;
@@ -486,7 +496,7 @@ header {
 }
 .nav {
   flex: 60%;
-  justify-content: center;
+  text-align: center;
   font-family: 'Titillium Web', sans-serif;
     box-sizing: border-box;
     transition: all .35s ease;
@@ -921,7 +931,3 @@ header {
     color: black;
     /* border: 3px solid brown; */
 }  
-body.modal-open {
-    overflow: auto!important;
-    padding: 0px!important;
-}

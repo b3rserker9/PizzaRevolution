@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<style>
+.container-menu {
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+    max-width: 1200px;
+    padding: 1.5em;
+  }
+  
+  .menu {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+  }
+  
+  .menu-group-heading {
+    margin: 0;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .menu-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+    padding: 1.5em 0;
+  }
+  
+  .menu-item {
+    display: flex;
+  }
+  
+  .menu-item-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 1.5em;
+  }
+  
+  .menu-item-text {
+    flex-grow: 1;
+  }
+  
+  .menu-item-heading {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+  
+  .menu-item-name {
+    margin-right: 1.5em;
+  }
+  
+  .menu-item-description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 20px;
+    font-family: 'Titillium Web', sans-serif;
+  }
+  
+ 
+ @media screen and (min-width: 992px) {
+    .menu {
+      font-size: 16px;
+    }
+  
+    .menu-group {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .menu-item-image {
+      width: 125px;
+      height: 125px;
+    }
+  }
+  
+  
+   .stile-padding-large {
+            padding: 90px 24px!important;
+        }
+
+        .stile-margin-top {
+            margin-top: 16px!important;
+        }
+
+        .stile-content {
+            max-width: 70%;
+        }
+
+        .stile-content, .w3-auto {
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        .stile-light-grey{
+        color: #000!important;
+        background-color: #e38924!important;
+        }
+        .stile-padding-32 {
+			margin-bottom: 150px;
+            padding-top: 32px!important;
+            padding-bottom: 32px!important;
+        }
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 150px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  padding-right: 10px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input {
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      outline: none;
+    }
+
+    .bottone{
+        background-color: black;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        cursor: pointer;
+       }
+</style>
+
+<html>
+<head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  </head>
+<body>
+
+		   	<div th:if="${role}=='ADMIN'">
+		<header th:replace="fragments/admin.html :: header"></header>
+	</div>
+	<div th:unless="${role}=='ADMIN'">
+	<header th:replace="fragments/default.html :: header"></header>
+	</div>
+ 
+		<!-- Page content -->
+	    <div class="stile-content stile-padding-large stile-margin-top">
+	        <div class="stile-light-grey stile-padding-large stile-padding-32 stile-margin-top">
+	        <div style="padding-bottom: 40px;">
+	            <div style="display: flex; justify-content: space-between;">
+	            	<h2> Menu</h2>
+	            	<p><button class ="bottone" id="myBtn">Aggiungi</button></p>
+	         	</div>
+	      
+	
+
+<form th:action="@{/ordine}" method="POST" th:object="${ordine}">
+
+<select hidden="true " th:field="*{cliente}" required>
+				<th:block th:each="u :${utente}">
+					<option th:value="${u.id}"/>
+				</th:block> 
+			</select>
+  <div class="container-menu">
+    <div class="menu">
+      <h2 class="menu-group-heading">
+        Pizza
+      </h2>
+      <div class="menu-group">
+      <div th:each="p : ${tuttePizze}">
+      <div class="menu-item">
+          <img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
+         <div class="menu-text-add" style="width: 100%;">
+          <div class="menu-item-text">
+            <h3 class="menu-item-heading">
+              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
+              <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
+            </h3>
+            <div class="menu-item-description">
+              <p th:each="i : ${p.ingredientiBase}" th:text="${i.nome}"></p>
+            </div>
+          </div>
+         <div class="add" style="float: right;">
+              
+            <input type="checkbox" checked="checked"  th:field="*{pizze}"
+            			th:value="${p.id}"/>
+          </div>
+         </div>
+        </div>
+            
+      </div>
+      </div>
+    </div>
+  </div>
+
+ 
+</form>
+</body>
+	         	
+	         	<!-- The Modal -->
+				<div id="myModal" class="modal">
+				
+				  <!-- Modal content -->
+				  <div class="modal-content">
+				    <span class="close">&times;</span>
+				    <div>
+				      <form th:action="@{/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data">
+				      		
+				      		 <div>
+						        <label for="myfile"><img style="width: auto; height: 150px;" src="images/foto.png"></label> <br>
+						        <input  type="file"  name="file">
+						     </div>
+        					
+							<label for="fname" class="scritte">Nome</label><br>
+			                <input type="text" id="fname" name="nome"  th:field="*{nome}" placeholder="Nome"><br>
+			            
+			                <label for="lname" class="scritte">Cognome</label><br>
+			                <input type="text" id="lname" name="cognome" th:field="*{prezzo}" placeholder="Cognome">		                      
+ 
+							<div>
+	                            <table>
+							        <thead>
+							            <tr>
+							                <th></th>
+							
+							                <th>Ingredienti</th>
+							            </tr>
+							        </thead>
+							        <tbody>
+								        <div th:each="i : ${Ingredienti}">
+								            <tr>
+								                <td ><input th:field="*{ingredientiBase}" th:value="${i.id}" type="checkbox" name="table_radio" checked="checked"/></td>
+								                <td th:text="${i.nome}"></td>
+								            </tr>
+								        </div>
+							        </tbody>
+							    </table>
+	                          	</div>	 
+								<span><button type="submit">Crea</button></span>
+						</form>
+					    </div>
+					  </div>
+					  
+					  
+					</div>
+		        </div>
+	        
+            	
+	        </div>
+	    </div> 
+</body>
+
+<script>
+		// Get the modal
+		var modal = document.getElementById("myModal");
+		
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+		
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		
+		// When the user clicks the button, open the modal 
+		btn.onclick = function() {
+		  modal.style.display = "block";
+		}
+		
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+		  modal.style.display = "none";
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+		    modal.style.display = "none";
+		  }
+		}
+	</script>
+</html>
