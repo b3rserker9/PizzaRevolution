@@ -18,36 +18,44 @@
 
 <header th:replace="fragments/base.html :: header"></header>
 
-      <div th:fragment="login">
-      <div id="login" class="overlay">
-        <div class="login">
-        <div class="x"><a href="#c_popup">X</a></div>
-          <div class="head-login">
-          <img src="images/avatar.png" alt="">
-          </div>
-          <p th:if="${loginError}" class="error">Wrong user or password</p>
-          <form th:action="@{/login}"  method="POST">
-          <div class="credentials">
-          <div class="mauro">
-           <div class="p username">
-            <input type="text" placeholder="Username" name="username" required />
-            
+      <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="login">
+        <div class="container">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between;" class="card-header">
+                        <h3>Login</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <p th:if="${loginError}" class="error">Wrong user or password</p>
+                    <div class="card-body">
+                        <form tth:action="@{/login}"  method="POST">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" name="nome" class="form-control" placeholder="username">
+                                
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" name="password" class="form-control" placeholder="password">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Login" class="btn float-right login_btn">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class=" password">
-            <input type="password" placeholder="Password" name="password"  required />
-            
+
+                        
         </div>
-          </div>
-      </div>
-      <div class="end-part">
-      <button type="submit" class="btn_login" >Login</button>
-      </div>
-        </form>
-      </div>
-      </div>
-      </div>
-   
-</div>
 </body>
 </html>
