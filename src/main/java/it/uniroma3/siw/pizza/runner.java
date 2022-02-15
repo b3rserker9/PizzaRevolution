@@ -47,7 +47,7 @@ public class runner  {
 	@Autowired
 	private IngredienteService ingredienteservice;
 	
-	/*@PostConstruct
+/*	@PostConstruct
 	public void popola() {
 
 		Pizza p1 = new Pizza();
@@ -111,5 +111,5 @@ public class runner  {
 
 		
 
-	}*/
+	} */
 }

@@ -60,28 +60,7 @@
     font-family: 'Titillium Web', sans-serif;
   }
   
-  .add input{
-    margin-top: 90px;
-    width: 45px; height: 40px;
-    padding-bottom: 45px;
-    border-radius: 50%; 
-    text-align: center;
-    transition: box-shadow .3s;
-    background: lightgrey;
-    cursor: pointer;
-    border: 0;
-    appearance: none;
-   }
-  .add input[type="checkbox"]::after{
-       font-size: 40px;
-       content: '+';
-       color: rgb(0, 0, 0);
-   }
-  
-  .add input:checked{ box-shadow: inset 0 0 0 20px #32a852;    
-    content: '+';
-    color: white;
-}
+ 
  @media screen and (min-width: 992px) {
     .menu {
       font-size: 16px;
@@ -187,7 +166,12 @@ input {
 <head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  </head>
 <body>
 
-		<header th:replace="fragments/base.html :: header"></header>
+		   	<div th:if="${role}=='ADMIN'">
+		<header th:replace="fragments/admin.html :: header"></header>
+	</div>
+	<div th:unless="${role}=='ADMIN'">
+	<header th:replace="fragments/default.html :: header"></header>
+	</div>
  
 		<!-- Page content -->
 	    <div class="stile-content stile-padding-large stile-margin-top">
@@ -197,6 +181,83 @@ input {
 	            	<h2> Menu</h2>
 	            	<p><button class ="bottone" id="myBtn">Aggiungi</button></p>
 	         	</div>
+	      
+	
+<div th:replace="accountOption :: modal">modal</div>
+<form th:action="@{/ordine}" method="POST" th:object="${ordine}">
+
+<select hidden="true " th:field="*{cliente}" required>
+				<th:block th:each="u :${utente}">
+					<option th:value="${u.id}"/>
+				</th:block> 
+			</select>
+  <div class="container-menu">
+    <div class="menu">
+      <h2 class="menu-group-heading">
+        Pizza
+      </h2>
+      <div class="menu-group">
+      <div th:each="p : ${tuttePizze}">
+      <div class="menu-item">
+          <img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
+         <div class="menu-text-add">
+          <div class="menu-item-text">
+            <h3 class="menu-item-heading">
+              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
+              <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
+            </h3>
+            <p class="menu-item-description">
+              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
+              congue eu mauris nec, pretium tincidunt nulla.
+            </p>
+          </div>
+         <div class="add" style="float: right;">
+              
+            <input type="checkbox" checked="checked"  th:field="*{pizze}"
+            			th:value="${p.id}"/>
+          </div>
+         </div>
+        </div>
+            
+      </div>
+      </div>
+      <h2 class="menu-group-heading">
+        Dessert
+      </h2>
+      <div class="menu-group">
+        <div class="menu-item">
+          <img class="menu-item-image" src="https://dummyimage.com/600x400/f00/000" alt="Bruschetta">
+          <div class="menu-item-text">
+            <h3 class="menu-item-heading">
+              <span class="menu-item-name">Bruschetta</span>
+              <span class="menu-item-price">$12.90</span>
+            </h3>
+            <p class="menu-item-description">
+              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
+              congue eu mauris nec, pretium tincidunt nulla.
+            </p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-image" src="https://dummyimage.com/600x400/00f/000" alt="Bruschetta">
+          <div class="menu-item-text">
+            <h3 class="menu-item-heading">
+              <span class="menu-item-name">Bruschetta</span>
+              <span class="menu-item-price">$12.90</span>
+            </h3>
+            <p class="menu-item-description">
+              Nunc efficitur felis vel mi efficitur, sed molestie sem scelerisque. Fusce orci risus,
+              congue eu mauris nec, pretium tincidunt nulla.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+</form>
+</body>
 	         	
 	         	<!-- The Modal -->
 				<div id="myModal" class="modal">
