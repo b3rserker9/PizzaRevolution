@@ -704,14 +704,15 @@ header {
   .menu-item-description {
     display: flex;
     flex-wrap: wrap;
+    max-height: 100px;
+    height: 90px;
+    overflow: auto;
     justify-content: space-evenly;
     font-size: 20px;
     font-family: 'Titillium Web', sans-serif;
   }
   
-  .menu-text-add{
-	
-}
+ 
   
   
   .add input{
