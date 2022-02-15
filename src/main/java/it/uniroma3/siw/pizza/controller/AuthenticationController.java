@@ -58,7 +58,7 @@ public class AuthenticationController {
             return "admin/home";
         }
     	//se non lo e'
-        return "default/home";
+        return "home";
     }
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)
     public String registerUser(@ModelAttribute("user") Utente user,
