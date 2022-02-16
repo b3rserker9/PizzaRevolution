@@ -136,7 +136,12 @@
 
 <body>
 
+		  	<div th:if="${role}">
+		<header th:replace="fragments/admin.html :: header"></header>
+	</div>
+	<div th:unless="${role}">
 		<header th:replace="fragments/base.html :: header"></header>
+	</div>
  
 		<!-- Page content -->
 	    <div class="stile-content stile-padding-large stile-margin-top">
@@ -144,12 +149,13 @@
 	        <div style="padding-bottom: 40px;">
 	            <div>
 	            	<h1> Menu</h1>
+	            	<p><button th:if="${role}" class ="bottone" id="myBtn_form">Aggiungi</button></p>
 	            </div>
 	        </div>
             	<hr>
             	<div>
 	            	<div style="display: flex; padding-top: 20px;" th:each="p : ${Pizze}">
-	            	<img class="menu-item-image" th:src="@{${'images/' + p.nome +'.jpg'}}" alt="Bruschetta">
+	            	<img class="menu-item-image" th:src="@{${'/images/' + p.nome +'.jpg'}}" alt="Bruschetta">
 				          <div class="menu-item-text">
 				            <h3 class="menu-item-heading">
 				              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
@@ -165,6 +171,78 @@
 	        </div>
 	        </div>
 	    </div> 
+	    <div th:replace="loginForm :: login"></div>
+	    <div id="form" class="modal">
+				
+				  <!-- Modal content -->
+				  <div class="modal-content" style="background-color: #ffffff !important">
+				    <span id="close" class="close">&times;</span>
+				  
+				      <form th:action="@{/admin/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data" style="height: 100%;">
+				      		  <div style="    display: flex; flex-direction: column; justify-content: space-around; height: 100%;">
+				      		  <div style="display: flex;flex-direction: row;    justify-content: space-around;">
+				      		 <div class="file-upload">
+						        <label for="myfile"><img style="width: auto; height: 150px;" src="images/foto.png"></label>
+						        <input  type="file"  name="file">
+						     </div>
+        					<div class="text-upload" style="display: flex;justify-content: space-around;flex-direction: column;width: 50%;">
+							 <div class="form-group">
+      						<label for="nome">Nome Pizza</label>
+      						<input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Name">
+    									</div>
+    									 <label for="prezzo">Prezzo</label>
+		<div class="input-group mb-2 mr-sm-2" style="width: 30%;height:62px ;">
+    <div class="input-group-prepend">
+      <div class="input-group-text">€</div>
+    </div>
+    <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo" placeholder="Prezzo">
+  </div>                   
+ 
+	                           <div  class="ingredienti-upload cust">
+	                           <div th:each="i : ${Ingredienti}" class="custom-control custom-switch cust">
+  <input type="checkbox" class="custom-control-input" th:id="${i.id}" th:field="*{ingredientiBase}" th:value="${i.id}">
+  <label class="custom-control-label" th:for="${i.id}" th:text="${i.nome}"></label>
+</div>
+	                           			 
+								        
+	                          	</div>	 
+        					</div>
+								
+				      		  </div>
+				      		  <div style="width: 100%; display: flex;justify-content: center;">
+				      		  <button type="submit" class="btn btn-warning">CREATE</button>
+				      		  <div>
+				      		  </div>
+						</form>
+					    </div>
+					  </div>
 </body>
-<div th:replace="loginForm :: login"></div>
+	        <script>
+// Get the modal
+
+var form = document.getElementById("form");
+var btn_form = document.getElementById("myBtn_form");
+// Get the <span> element that closes the modal
+var span = document.getElementById("close");
+
+btn_form.onclick = function() {
+  form.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  form.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == form) {
+    form.style.display = "none";
+  }
+}
+
+
+</script>
+					  
+
 </html>

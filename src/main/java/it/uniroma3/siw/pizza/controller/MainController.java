@@ -92,7 +92,7 @@ public class MainController {
 	@RequestMapping(value = "/default/ordine", method = RequestMethod.GET)
 		public String ordine(Model model) {
 		model.addAttribute("tuttePizze", pizzaservice.tutte());
-		model.addAttribute("pizza" , new Pizza());
+		
 		model.addAttribute("ordine",new Ordine());
 		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
 		model.addAttribute("role",this.credentialsService.getRoleAuthenticated());
@@ -145,7 +145,16 @@ public class MainController {
 	
 	@GetMapping(value = "/menu")
 	public String menu(Model model) {
+		model.addAttribute("role",false);
 		model.addAttribute("Pizze",this.pizzaservice.tutte());
+		model.addAttribute("pizza" , new Pizza());
+		return "menu";
+	}
+	@GetMapping(value = "/admin/menu")
+	public String menuadmin(Model model) {
+		model.addAttribute("role",true);
+		model.addAttribute("Pizze",this.pizzaservice.tutte());
+		model.addAttribute("pizza" , new Pizza());
 		return "menu";
 	}
 	

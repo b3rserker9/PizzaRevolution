@@ -106,20 +106,13 @@ input {
 <head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  </head>
 <body>
 
-		   	<div th:if="${role}=='ADMIN'">
-		<header th:replace="fragments/admin.html :: header"></header>
-	</div>
-	<div th:unless="${role}=='ADMIN'">
-	<header th:replace="fragments/default.html :: header"></header>
-	</div>
- 
+		
 		<!-- Page content -->
 	    <div class="stile-content stile-padding-large stile-margin-top">
 	        <div class="stile-light-grey stile-padding-large stile-padding-32 stile-margin-top">
 	        <div style="padding-bottom: 40px;">
 	            <div style="display: flex; justify-content: space-between;">
 	            	<h2> Menu</h2>
-	            	<p><button class ="bottone" id="myBtn">Aggiungi</button></p>
 	         	</div>
 	      
 	
@@ -168,51 +161,7 @@ input {
 </body>
 	         	
 	         	<!-- The Modal -->
-				<div id="myModal" class="modal">
-				
-				  <!-- Modal content -->
-				  <div class="modal-content" style="background-color: #ffffff !important">
-				    <span class="close">&times;</span>
-				  
-				      <form th:action="@{/admin/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data" style="height: 100%;">
-				      		  <div style="    display: flex; flex-direction: column; justify-content: space-around; height: 100%;">
-				      		  <div style="display: flex;flex-direction: row;    justify-content: space-around;">
-				      		 <div class="file-upload">
-						        <label for="myfile"><img style="width: auto; height: 150px;" src="images/foto.png"></label>
-						        <input  type="file"  name="file">
-						     </div>
-        					<div class="text-upload" style="display: flex;justify-content: space-around;flex-direction: column;width: 50%;">
-							 <div class="form-group">
-      						<label for="nome">Nome Pizza</label>
-      						<input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Name">
-    									</div>
-    									 <label for="prezzo">Prezzo</label>
-		<div class="input-group mb-2 mr-sm-2" style="width: 30%;height:62px ;">
-    <div class="input-group-prepend">
-      <div class="input-group-text">€</div>
-    </div>
-    <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo" placeholder="Prezzo">
-  </div>                   
- 
-	                           <div  class="ingredienti-upload cust">
-	                           <div th:each="i : ${Ingredienti}" class="custom-control custom-switch cust">
-  <input type="checkbox" class="custom-control-input" th:id="${i.id}" th:field="*{ingredientiBase}" th:value="${i.id}">
-  <label class="custom-control-label" th:for="${i.id}" th:text="${i.nome}"></label>
-</div>
-	                           			 
-								        
-	                          	</div>	 
-        					</div>
-								
-				      		  </div>
-				      		  <div style="width: 100%; display: flex;justify-content: center;">
-				      		  <button type="submit" class="btn btn-warning">CREATE</button>
-				      		  <div>
-				      		  </div>
-						</form>
-					    </div>
-					  </div>
-					  
+			
 					  
 					</div>
 		        </div>

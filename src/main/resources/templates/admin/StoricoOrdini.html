@@ -36,7 +36,31 @@
   <th  th:text="${pippo}">Totale</th>
   </tr>
 </table>
-
+<div class="space"></div>
+<div class="table-div">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Veicolo</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="o : ${ordine}">
+      <th scope="row" th:text="${o.id}"></th>
+      <td th:text="${o.nome}"></td>
+      <td th:text="${o.orario}"></td>
+      <td th:text="${o.fattorino.nome}"></td>
+      <td th:text="${o.totale}">prezzo</td>
+      <td><button class="btn btn-info">Edit</button><button class="btn btn-danger">Delete</button></td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
 
 
 

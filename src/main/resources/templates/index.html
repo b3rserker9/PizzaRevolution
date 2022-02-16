@@ -4,21 +4,37 @@
 <title>Pizza Revolution</title>
 
 </head>
-
+<style>
+.present_btn{
+	font-size: 1vw;
+	 font-weight: bold;
+	 text-decoration: none;
+    color: white;
+    border: solid 1px white;
+    border-radius: 2em;
+    padding: 1vw 4.5vw;
+}
+.present_btn:hover{
+	background-color: white;
+	color: black!important;
+	text-decoration: none;
+}
+</style>
 <body>
 
 
 <header th:replace="fragments/base.html :: header"></header>
-<div class="first">
-    <div class="img">
- <p class="head">PIZZA REVOLUTION</p>
- <div class="line"></div>
- <P class="slogan"> Qui il vero suppli al telefono</P>
-    </div>
-</div>
-<div class="background">
-</div>
 
+<div class="background">
+<div class="index-text" style="position: absolute;top: 30%;left: 16px; font-size: 3vw;width: 30%;color: white;text-align: center;"><span style="font-family: 'Lato', sans-serif;">PIZZA REVOLUTION</span>
+ 						<div class="line"></div>
+ 						<span style="font-family: 'Cormorant Garamond', serif;font-size: 2vw;">Qui il vero suppli al telefono..</span></div>
+</div>
+<div class="index-first"  style="position: absolute;top: 50%;left: 16px;    display: flex; justify-content: space-around; width: 30%;">
+<a  class="present_btn" data-toggle="modal" data-target="#exampleModal" style="color: white;">Ordina</a>
+<a href="/menu" class="present_btn" style="padding: 1vw 5vw;">Menu</a>
+
+</div>
 
     
 <div class="first">

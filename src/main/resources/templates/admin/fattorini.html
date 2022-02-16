@@ -66,27 +66,33 @@ input {
 </style>
 <header th:replace="fragments/admin.html :: header"></header>
 <body>
-
-
-<div style="text-align: center; padding-top: 50px;">
-	<table class="tabella">
-		  <tr>
-		  <th>Fattorini</th>
-		  <th>Telefono</th>
-		  <th>Veicolo</th>
-		  </tr>
-		  <div th:each="f : ${fattorini}">
-		  <tr>
-		  <td th:text="${f.nome}">ordine</td>
-		  <td th:text="${f.telefono}">orario</td>
-		  <td th:text="${f.tipo_veicolo}">orario</td>
-		  </tr>
-		  </div>
-	</table>
-	
+<div class="space"></div>
+<div class="table-div">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Veicolo</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="f : ${fattorini}">
+      <th scope="row" th:text="${f.id}"></th>
+      <td th:text="${f.nome}"></td>
+      <td th:text="${f.telefono}"></td>
+      <td th:text="${f.tipo_veicolo}"></td>
+      <td><button class="btn btn-info">Edit</button><button class="btn btn-danger">Delete</button></td>
+    </tr>
+    
+  </tbody>
+</table>
 </div>
 <button class ="bottone" id="myBtn">Aggiungi</button>
 
+	
 <!-- The Modal -->
 				<div id="myModal" class="modal">
 				
