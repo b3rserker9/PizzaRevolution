@@ -28,7 +28,7 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 25%;
   border-radius: 10px;
 }
 
@@ -49,6 +49,7 @@
 }
 
 input {
+	  width: 100%;
       padding: 12px 20px;
       margin: 8px 0;
       box-sizing: border-box;
@@ -84,7 +85,7 @@ input {
       <td th:text="${f.nome}"></td>
       <td th:text="${f.telefono}"></td>
       <td th:text="${f.tipo_veicolo}"></td>
-      <td><button class="btn btn-info">Edit</button><button class="btn btn-danger">Delete</button></td>
+      <td><button class="btn btn-info">Edit</button><a th:href="'/admin/eliminaFattorino/'+${f.id}"><button class="btn btn-danger">Delete</button></a></td>
     </tr>
     
   </tbody>
@@ -100,19 +101,19 @@ input {
 				  <div class="modal-content">
 				    <span class="close">&times;</span>
 				    <div>
-				      <form th:action="@{/newFattorino}" method="POST" th:object="${fattorino}">
+				      <form th:action="@{/admin/newFattorino}" method="POST" th:object="${fattorino}">
 				      	
         					
-							<label for="fname" class="scritte">Nome</label><br>
+							<label for="fname" style="color:aliceblue">Nome</label><br>
 			                <input type="text" id="fname" name="nome"  th:field="*{nome}" placeholder="Nome"><br>
 			            
-			                <label for="lname" class="scritte">Telefono</label><br>
+			                <label for="lname" style="color:aliceblue">Telefono</label><br>
 			                <input type="text" id="lname" name="cognome" th:field="*{telefono}"><br>
 			                
-			                 <label for="lname" class="scritte">Veicolo</label><br>
+			                 <label for="lname" style="color:aliceblue">Veicolo</label><br>
 			                <input type="text" id="lname" name="cognome" th:field="*{tipo_veicolo}"><br>		                      
  
-							<span><button type="submit">Crea</button></span>
+							<span><button class="bottone" type="submit">Crea</button></span>
 						</form>
 					    </div>
 					  </div>

@@ -7,12 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import it.uniroma3.siw.pizza.controller.validator.FattorinoValidator;
-import it.uniroma3.siw.pizza.controller.validator.PizzaValidator;
 import it.uniroma3.siw.pizza.model.Credentials;
 import it.uniroma3.siw.pizza.model.Fattorino;
 import it.uniroma3.siw.pizza.model.Ordine;
@@ -35,9 +30,6 @@ import it.uniroma3.siw.pizza.service.FattorinoService;
 import it.uniroma3.siw.pizza.service.IngredienteService;
 import it.uniroma3.siw.pizza.service.OrdineService;
 import it.uniroma3.siw.pizza.service.PizzaService;
-import net.bytebuddy.asm.Advice.This;
-
-
 
 
 
@@ -49,13 +41,9 @@ public class MainController {
 	@Autowired
 	private CredentialsService credentialsService;
 
-	@Autowired
-	private PizzaValidator pizzavalidator;
 
 	@Autowired
 	private FattorinoService fattoriniService;
-	@Autowired
-	private FattorinoValidator fattorinovalidator;
 	
 	@Autowired
 	private PizzaService pizzaservice;
@@ -172,6 +160,14 @@ public class MainController {
 		
 		return "redirect:/admin/fattorini";
 	}
+	
+	@GetMapping(value = "/admin/eliminaFattorino/{id}")
+    public String eliminaFattorino(@PathVariable("id") Long id) {
+		
+		this.fattoriniService.elimina(id);
+
+        return "redirect:/admin/fattorini";
+    }
 	
 	@GetMapping(value = "/admin/storico")
 	public String storico(Model model) {

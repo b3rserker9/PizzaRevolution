@@ -47,4 +47,8 @@ public class FattorinoService {
 		this.fattorinorepository.save(fattorino);
 	}
 
+	public void elimina(Long id) {
+		this.fattorinorepository.deleteById(id);
+	}
+
 }
