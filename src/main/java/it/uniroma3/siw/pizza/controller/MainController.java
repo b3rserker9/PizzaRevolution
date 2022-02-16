@@ -138,7 +138,7 @@ public class MainController {
 		this.pizzaservice.inserisci(pizza);
 		String baseDir="C:\\Users\\utente\\Documents\\workspace-spring-tool-suite-4-4.11.1.RELEASE\\PizzaRevolution\\src\\main\\resources\\static\\images\\";
 			file.transferTo(new File(baseDir + pizza.getNome()+".jpg"));
-		
+		this.pizzaservice.inserisci(pizza);
 		return "admin/home";
 	}
 	

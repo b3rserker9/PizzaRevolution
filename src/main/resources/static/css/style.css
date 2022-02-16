@@ -1,12 +1,18 @@
 * {
 	margin: 0;
 	padding: 0;
+
 }
 html, body {
     overflow-x: hidden;
-    font-family: 'Titillium Web', sans-serif;
+    	font-family: 'IBM Plex Sans Thai Looped', sans-serif !important;
 }
-  
+  a{
+	 text-decoration-line: none;
+}
+p{
+	margin-bottom: 0!important;
+}
 /*	#############################################################
     ###################### LOGIN ################################ */
 	
@@ -20,22 +26,7 @@ html, body {
     top: 50%;
   }
   
- 
-   .overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    transition: opacity 500ms;
-    visibility: hidden;
-     opacity: 0;
-    }
-    .overlay:target {
-        visibility: visible;
-        opacity: 1;
-      }
+
       
  .login{
     text-align: center;
@@ -52,18 +43,10 @@ html, body {
     border-radius: 25px;
     background-color: rgba(0,0,0,.5);
     color: #fff;
-    font-family: 'Titillium Web', sans-serif;
+    
     
 }
-.x a{
-          position: fixed;
-          left: 85%;
-          top: 3%;
-          font-size: 30px;
-          color: red;
-          font-family: 'Titillium Web', sans-serif;
-          text-decoration: none;
-      }
+
 
 .login .head-login{	 
     height: 30%; 
@@ -105,19 +88,7 @@ html, body {
     font-size: 20px;
     color: white;
 }
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-	-webkit-text-fill-color: rgb(255, 255, 255);
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-  transition: background-color 5000s ease-out 0s;
-}
+
 
 .credentials input::placeholder{
     color: white;
@@ -306,25 +277,31 @@ select:-webkit-autofill:focus {
 
 .first{
     width: 100%;
-    height: 70%;
+    height: 350px;
     background-color: rgb(255, 123, 0);
+       display: flex;
+    justify-content: center;
     text-align: center;
 }
+.line {
+    width: 100%;
+    height: 5px;
+    background-color: black;
+}
 .first .img {
-    padding-top: 80px;
     font-size: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.first .img p{
-    font-family: 'News Cycle', sans-serif;
-}
 .first .img .head{
     font-size: 60px;
-    padding-top: 30px;
 }
 .first .img .slogan{
-    font-family: 'Architects Daughter', cursive;
+	margin-bottom: 0;
 }
+.modal-open{overflow:auto;padding-right:0 !important;}
 .background{
     background-image: url("/images/8.jpg");
     min-height: 1000px;
@@ -333,11 +310,20 @@ select:-webkit-autofill:focus {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.second{
-    padding: 120px 0;
-    width: 100%;
-    margin-left: 25%;
-    
+
+.login_btn{
+color: black;
+background-color: #c29101 ;
+width: 100px;
+}
+.login_btn:hover{
+	background-color: #FFC312;
+}
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
 }
 
 .container{
@@ -345,10 +331,67 @@ select:-webkit-autofill:focus {
     flex-wrap: wrap;
     padding: 0px 30px;
 }
-.row{
+.second{
+    padding: 120px 0;
+    width: 50%;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    
+}
+/*.row{
     flex: 25%;
     max-width: 25%;
     padding: 0 10px;
+}*/
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  justify-content: center;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: 40%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+ -webkit-filter: grayscale(0) blur(0);
+	filter: grayscale(0) blur(0);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.column img:hover {
+-webkit-filter: grayscale(60%) blur(3px);
+	filter: grayscale(60%) blur(3px);
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
 }
 .image{
     position: relative;
@@ -362,7 +405,6 @@ select:-webkit-autofill:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Noto Sans', sans-serif;
     font-size: 60px;
     opacity: 0;
 }
@@ -385,15 +427,19 @@ select:-webkit-autofill:focus {
   
 }
 header {
-  
-	height: 70px;
+  	
+	height: 100px;
 	background-color: rgba(0,0,0,.5);
 	width: 100%;
 	position: fixed;
   	z-index: 2;
+  	display: flex !important;
+  	justify-content: center;
   
 }
-
+.modal-content{
+	    background-color: #00000096 !important;
+}
 .checkbtn{
 	flex: 60%;
   font-size: 30px;
@@ -447,28 +493,23 @@ header {
 .wrapper{
   display: flex;
   justify-content: space-between;
-  justify-content: center;
   align-items: center;
-  margin-top: -6px;
+	width: 100%;
+	padding: 12px;
 }
 
-.wrapper a {
+.nav a {
     
 	text-decoration: none;
 	font-size: 30px;
-	font-family: poppins;
 	color: #fff;
 	letter-spacing: 5px;
 
 }
 
 
-.total{
-	flex: 60%;
-	display: flex;
-	flex-direction: row;
-}
-.total .btn .b1{
+
+.btn .b1{
   
   cursor:pointer;
   display:inline-block ;
@@ -478,14 +519,13 @@ header {
   font-size: 18px;
   box-sizing: border-box;
   text-decoration:none;
-  font-family:'Roboto',sans-serif;
   font-weight:300;
   color:#FFFFFF;
   background-color:rgb(241, 112, 6);;
   text-align:center;
   transition: all 0.2s;
 }
-.wrapper .btn .b1:hover{
+ .btn .b1:hover{
   border-color: rgba(255,255,255,1);
 }
 .logo img {
@@ -495,9 +535,7 @@ header {
     background-size: auto 68px;
 }
 .nav {
-  flex: 60%;
   text-align: center;
-  font-family: 'Titillium Web', sans-serif;
     box-sizing: border-box;
     transition: all .35s ease;
 }
@@ -572,6 +610,7 @@ header {
   height: 400px;
   width: 100%;
   bottom: 0;
+
 }
 
 .footer .footer-content {
@@ -587,7 +626,6 @@ header {
 
 .footer .footer-content h1,
 .footer .footer-content h2 {
-  font-family: 'Titillium Web', sans-serif;
   color: rgb(255, 115, 0);
 }
 .footer .footer-content .about p {
@@ -711,16 +749,9 @@ header {
   padding-top: 20px;
 }
 
-.container-menu {
-	margin-top: 100px;
-	margin-left: auto;
-	margin-right: auto;
-    max-width: 1200px;
-    padding: 1.5em;
-  }
+
   
   .menu {
-    font-family: "Inter", sans-serif;
     font-size: 14px;
   }
   
@@ -771,7 +802,6 @@ header {
     overflow: auto;
     justify-content: space-evenly;
     font-size: 20px;
-    font-family: 'Titillium Web', sans-serif;
   }
   
  
@@ -862,14 +892,16 @@ header {
     font-size: 18px;
     box-sizing: border-box;
     text-decoration:none;
-    font-family:'Roboto',sans-serif;
     font-weight:300;
     color:#FFFFFF;
     background-color:rgb(255, 105, 5);;
     text-align:center;
     transition: all 0.2s;
   }
-  @media screen and (min-width: 992px) {
+ 
+  @media screen and (min-width: 1230px) {
+
+	
     .menu {
       font-size: 16px;
     }
@@ -901,7 +933,6 @@ header {
     padding-bottom: 2%;
 }
 .area .introduzione{
-	font-family: "PostGrotesk",sans-serif;
 	text-align: left;
     font-size: 17px;
     padding: 4%;
@@ -911,7 +942,7 @@ header {
     color: white;
 }
 .area .storia{
-	font-family: "PostGrotesk",sans-serif;
+
 	text-align: left;
     font-size: 18px;
     padding: 4%;
@@ -921,7 +952,6 @@ header {
     color: black;
 }
 .area .gustalo{
-	font-family: "PostGrotesk",sans-serif;
 	text-align: left;
     font-size: 18px;
     padding: 4%;

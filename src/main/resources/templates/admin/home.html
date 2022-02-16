@@ -2,10 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments/admin.html :: headerfiles(title='Admin Home')"> 
 <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
-
 </head>
 <header th:replace="fragments/admin.html :: header"></header>
-
+<style>
+.footer{
+	position: absolute;
+	bottom: 0;
+}
+</style>
 <body>
 <footer th:replace="fragments/admin.html :: footer"></footer>
     </body>

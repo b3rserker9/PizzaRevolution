@@ -5,6 +5,9 @@
 	  	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title th:text="${title}"></title>
 		<link rel="shortcut icon" href="images/pizza_icon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300&display=swap" rel="stylesheet">
 		<link th:href="@{/css/style.css}" rel="stylesheet">  	
 		<script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -26,7 +29,6 @@
 	      <label for="check" class="checkbtn">
 	        <i class="fas fa-bars"></i>
 	      </label>
-					<div class="total">
 					  <ul class="nav">
 	                    <li><a href="#">LA PIZZA</a></li>
 	                    <li><a th:href="@{suppli}">SUPPLI</a></li>
@@ -38,8 +40,7 @@
 	                    <a class="b1" data-toggle="modal" data-target="#exampleModal">Login</a>
 	                    <a class="b1" th:href="@{/register}">Register</a>
 	                  </div>
-					</div>
-	                   
+					
 				</div>
 				
 			</header>

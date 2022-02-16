@@ -1,10 +1,16 @@
     <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/default.html :: headerfiles(title='Login Utente')"> 
+<head th:replace="fragments/default.html :: headerfiles(title='Client')"> 
 </head>
+<style>
+.footer{
+	position: absolute;
+	bottom: 0;
+}
+</style>
 <body>
 <header th:replace="fragments/default.html :: header"></header>
 
-<footer th:replace="fragments/default.html :: footer"></footer>
+<footer th:replace="fragments/default.html :: footer" ></footer>
     </body>
 </html>

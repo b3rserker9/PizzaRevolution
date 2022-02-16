@@ -1,80 +1,6 @@
 <!DOCTYPE html>
 <style>
-.container-menu {
-	margin-top: 100px;
-	margin-left: auto;
-	margin-right: auto;
-    max-width: 1200px;
-    padding: 1.5em;
-  }
-  
-  .menu {
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
-  }
-  
-  .menu-group-heading {
-    margin: 0;
-    padding-bottom: 1em;
-    border-bottom: 2px solid #ccc;
-  }
-  
-  .menu-group {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5em;
-    padding: 1.5em 0;
-  }
-  
-  .menu-item {
-    display: flex;
-  }
-  
-  .menu-item-image {
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
-    object-fit: cover;
-    margin-right: 1.5em;
-  }
-  
-  .menu-item-text {
-    flex-grow: 1;
-  }
-  
-  .menu-item-heading {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-  }
-  
-  .menu-item-name {
-    margin-right: 1.5em;
-  }
-  
-  .menu-item-description {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    font-size: 20px;
-    font-family: 'Titillium Web', sans-serif;
-  }
-  
- 
- @media screen and (min-width: 992px) {
-    .menu {
-      font-size: 16px;
-    }
-  
-    .menu-group {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    .menu-item-image {
-      width: 125px;
-      height: 125px;
-    }
-  }
+
   
   
    .stile-padding-large {
@@ -125,13 +51,14 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 80% !important;
+  height: 90%;
   border-radius: 10px;
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: rgb(255, 0, 0);
   float: right;
   padding-right: 10px;
   font-size: 28px;
@@ -160,6 +87,19 @@ input {
         border: none;
         cursor: pointer;
        }
+       .scritte{
+	color: white;
+}
+.cust{
+	display: flex;
+	justify-content: center;
+	padding:0 25px!important;
+}
+.ingredienti-upload{
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
 </style>
 
 <html>
@@ -231,42 +171,44 @@ input {
 				<div id="myModal" class="modal">
 				
 				  <!-- Modal content -->
-				  <div class="modal-content">
+				  <div class="modal-content" style="background-color: #ffffff !important">
 				    <span class="close">&times;</span>
-				    <div>
-				      <form th:action="@{/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data">
-				      		
-				      		 <div>
-						        <label for="myfile"><img style="width: auto; height: 150px;" src="images/foto.png"></label> <br>
+				  
+				      <form th:action="@{/admin/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data" style="height: 100%;">
+				      		  <div style="    display: flex; flex-direction: column; justify-content: space-around; height: 100%;">
+				      		  <div style="display: flex;flex-direction: row;    justify-content: space-around;">
+				      		 <div class="file-upload">
+						        <label for="myfile"><img style="width: auto; height: 150px;" src="images/foto.png"></label>
 						        <input  type="file"  name="file">
 						     </div>
-        					
-							<label for="fname" class="scritte">Nome</label><br>
-			                <input type="text" id="fname" name="nome"  th:field="*{nome}" placeholder="Nome"><br>
-			            
-			                <label for="lname" class="scritte">Cognome</label><br>
-			                <input type="text" id="lname" name="cognome" th:field="*{prezzo}" placeholder="Cognome">		                      
+        					<div class="text-upload" style="display: flex;justify-content: space-around;flex-direction: column;width: 50%;">
+							 <div class="form-group">
+      						<label for="nome">Nome Pizza</label>
+      						<input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Name">
+    									</div>
+    									 <label for="prezzo">Prezzo</label>
+		<div class="input-group mb-2 mr-sm-2" style="width: 30%;height:62px ;">
+    <div class="input-group-prepend">
+      <div class="input-group-text">€</div>
+    </div>
+    <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo" placeholder="Prezzo">
+  </div>                   
  
-							<div>
-	                            <table>
-							        <thead>
-							            <tr>
-							                <th></th>
-							
-							                <th>Ingredienti</th>
-							            </tr>
-							        </thead>
-							        <tbody>
-								        <div th:each="i : ${Ingredienti}">
-								            <tr>
-								                <td ><input th:field="*{ingredientiBase}" th:value="${i.id}" type="checkbox" name="table_radio" checked="checked"/></td>
-								                <td th:text="${i.nome}"></td>
-								            </tr>
-								        </div>
-							        </tbody>
-							    </table>
+	                           <div  class="ingredienti-upload cust">
+	                           <div th:each="i : ${Ingredienti}" class="custom-control custom-switch cust">
+  <input type="checkbox" class="custom-control-input" th:id="${i.id}" th:field="*{ingredientiBase}" th:value="${i.id}">
+  <label class="custom-control-label" th:for="${i.id}" th:text="${i.nome}"></label>
+</div>
+	                           			 
+								        
 	                          	</div>	 
-								<span><button type="submit">Crea</button></span>
+        					</div>
+								
+				      		  </div>
+				      		  <div style="width: 100%; display: flex;justify-content: center;">
+				      		  <button type="submit" class="btn btn-warning">CREATE</button>
+				      		  <div>
+				      		  </div>
 						</form>
 					    </div>
 					  </div>

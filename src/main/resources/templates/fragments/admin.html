@@ -1,96 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerfiles(title)">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="${title}"></title>
-	<link rel="shortcut icon" href="images/pizza_icon.ico" />
-	<link th:href="@{/css/admin.css}" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
+	<head th:fragment="headerfiles(title)">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title th:text="${title}"></title>
+		<link rel="shortcut icon" href="images/pizza_icon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300&display=swap" rel="stylesheet">
+		<link th:href="@{/css/style.css}" rel="stylesheet">  	
+		<link th:href="@{/css/admin.css}" rel="stylesheet">  	
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-</head>
-
-
-
-<body>
-    <div class="box-area">
-    <header th:fragment="header">
-			<div class="wrapper">
-				<div class="logo">
-                    <img src="images/logo2.png"/>
+<script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+	
+		<div class="box-area">
+			<header th:fragment="header">
+				<div class="wrapper">
+					<div class="logo">
+	                    <a th:href="@{/default}"><img  src="/images/logo2.png"/></a>
+					</div>
+					
+					<input type="checkbox" id="check">
+	      <label for="check" class="checkbtn">
+	        <i class="fas fa-bars"></i>
+	      </label>
+					  <ul class="nav">
+	                    <li><a th:href="@{/admin/fattorini}">FATTORINI</a></li>
+                    	<li><a th:href="@{/menu}">MENU</a></li>
+                    	<li><a th:href="@{/admin/storico}">STORICO ORDINI</a></li>
+	                  </ul>
+	                 <div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <i class="fas fa-user"></i>
+  
+  </button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <button class="dropdown-item" type="button">Action</button>
+    <a class="dropdown-item" th:href="@{/logout}" style="color: red;"><i class="fas fa-sign-out-alt"></i>Log out</a>
+  </div>
+</div>
 					
 				</div>
-				  <ul class="nav">
-                    <li><a href="#">LA NOSTRA PIZZA</a></li>
-                    <li><a th:href="@{/admin/fattorini}">FATTORINI</a></li>
-                    <li><a th:href="@{/menu}">MENU</a></li>
-                    <li><a th:href="@{/admin/storico}">STORICO ORDINI</a></li>
-                    <li><a href="#">CONTATTACI</a></li>
-                  </ul>
-                  <div class="btn">
-                    <a href="#popup"><img src="images/account.png" alt=""> </a>
-                  </div>
-			</div>
-		</header>
-
-    </div>
-    
-   
-
-
-<footer th:fragment="footer">
-<div class="footer">
-    <div class="footer-content">
-
-      <div class="footer-section about">
-        <h1 class="logo-text">Pizza Revolution</h1>
-        <p>
-          Qualcosa....
-        </p>
-        <div class="contact">
-          <span><i class="fas fa-phone"></i> &nbsp; (+39) 356-323-2351</span>
-          <span><i class="fas fa-envelope"></i> &nbsp; PizzaR@gmail.com.com</span>
-        </div>
-        <div class="socials">
-          <a href="https://www.facebook.com/pizzarevolutionpleonardo/"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-
-      <div class="footer-section links">
-        <h2>Quick Links</h2>
-        <br>
-        <ul>
-          <li><a href="#">La Pizza</a></li>
-                <li><a href="#">Chi Siamo</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Ordina</a></li>
-              </ul>
-      </div>
-
-      <div class="footer-section newsletter">
-        <h2>Subscribe Our Newsletter & Join US</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-        <div class="newsletter-box">
-            <i class="fas fa-envelope"></i>
-            <input class="emailbox" type="email" name="" value="" placeholder="Enter your email id">
-            <button type="button" name="button">Subscribe</button>
-        </div>
-    </div>
-      </div>
-      <div class="footer-bottom">
-        © PizzaRevolution.com | by Angi S.R.L.
-      </div>
-    </div>
-</footer>
-
-    
-  </div>
-</body>
+				
+			</header>
+			    
+		<footer th:fragment="footer">
+			<div class="footer">
+				<div class="footer-content">
+					<div class="footer-section about">
+						<h1 class="logo-text">Pizza Revolution</h1>
+						<p>Qualcosa....</p>
+						<div class="contact">
+							<span><i class="fas fa-phone"></i> &nbsp; (+39) 356-323-2351</span>
+							<span><i class="fas fa-envelope"></i> &nbsp; PizzaR@gmail.com.com</span>
+						</div>
+						<div class="socials">
+							<a href="https://www.facebook.com/pizzarevolutionpleonardo/"><i class="fab fa-facebook"></i></a>
+							<a href="#"><i class="fab fa-instagram"></i></a>
+							<a href="#"><i class="fab fa-twitter"></i></a>
+							<a href="#"><i class="fab fa-youtube"></i></a>
+						</div>
+					</div>
+					<div class="footer-section links">
+						<h2>Quick Links</h2>
+						<br>
+						<ul>
+						<li><a href="#">La Pizza</a></li>
+						<li><a href="#">Chi Siamo</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Ordina</a></li>
+						<li><a href="#">Contattaci</a></li>
+						</ul>
+					</div>
+					<form action="" class="footer-section newsletter">
+						<h2>Subscribe Our Newsletter & Join US</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						<div class="newsletter-box">
+							<i class="fas fa-envelope"></i>
+							<input class="emailbox" type="email" name="" value="" placeholder="Enter your email id">
+							<button type="button" name="button">Subscribe</button>
+						</div>
+					</form>
+				</div>
+	          	<div class="footer-bottom">
+					© PizzaRevolution.com | by Angi S.R.L.
+				</div>
+	       	</div>
+	    </footer>
+		</div>
+	</body>
 </html>
