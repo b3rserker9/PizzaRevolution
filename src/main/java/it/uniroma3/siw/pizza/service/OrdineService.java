@@ -79,31 +79,11 @@ public class OrdineService {
 			return null;
 	}
 	
+	public Occupazione getDisponibilita(String ora) {
+		return this.ordinerepository.findOccupazionePerOrario(ora);
+	}
 	
-	public TreeMap<String, List<Long>> OccupazionePerOrario(String data){
-		Collection<Occupazione> lista =  ordinerepository.findOccupazionePerOrario(data);
-		
-		TreeMap<String, List<Long>> myMap = new TreeMap<String, List<Long>>();
-		for(String o : this.populateOrari())
-			myMap.put(o, new ArrayList<>(Arrays.asList(0l, 0l)) );
 
-		for(Occupazione o : lista) {
-			logger.debug("\n\n" + o.getNPizzePerOrario() + "\n\n" );
-			myMap.put(o.getOrario(), Arrays.asList(o.getNPizzePerOrario(), o.getNFattoriniPerOrario()));
-		}
-		return myMap;
-	}
-	
-	public List<String> tutteLeDate(){
-		List<Ordine> tt = (List<Ordine>)this.ordinerepository.findAll();
-		List<String> tutteLeDate = new ArrayList<String>();
-		tutteLeDate.add("");
-		for(Ordine o: tt) {
-			if(!tutteLeDate.contains(o.getData()))
-				tutteLeDate.add(o.getData());
-		}
-		return tutteLeDate;
-	}
 
 
 

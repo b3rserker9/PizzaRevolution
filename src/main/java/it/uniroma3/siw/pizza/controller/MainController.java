@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import it.uniroma3.siw.pizza.controller.validator.IngredienteValidator;
+import it.uniroma3.siw.pizza.controller.validator.PizzaValidator;
 import it.uniroma3.siw.pizza.model.Credentials;
 import it.uniroma3.siw.pizza.model.Fattorino;
+import it.uniroma3.siw.pizza.model.Ingrediente;
 import it.uniroma3.siw.pizza.model.Ordine;
 import it.uniroma3.siw.pizza.model.Pizza;
 import it.uniroma3.siw.pizza.model.Utente;
@@ -51,6 +56,12 @@ public class MainController {
 	@Autowired
 	private IngredienteService ingredienteservice;
 	
+	@Autowired 
+	private IngredienteValidator ingredientevalidator;
+	
+	@Autowired
+	private PizzaValidator pizzavalidator;
+	
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -70,9 +81,7 @@ public class MainController {
 	public String suppli(Model model) {
 			return "suppli";
 	}
-	@RequestMapping(value = "/contattaciFree", method = RequestMethod.GET)
-	public String contattaciFree(Model model) {
-		return "contattaciFree";}
+
 	
 	
 	
@@ -80,7 +89,14 @@ public class MainController {
 	@RequestMapping(value = "/default/ordine", method = RequestMethod.GET)
 		public String ordine(Model model) {
 		model.addAttribute("tuttePizze", pizzaservice.tutte());
-		
+		System.out.println(this.ordineservice.getDisponibilita("19:15").getDisponibile());
+		List<String> orari = new ArrayList<>();
+		for(String s : this.ordineservice.populateOrari()) {
+			if(this.ordineservice.getDisponibilita(s).getDisponibile() < this.fattoriniService.tutti().size()) {
+				orari.add(s);
+			}
+		}
+		model.addAttribute("orari", orari);
 		model.addAttribute("ordine",new Ordine());
 		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
 		model.addAttribute("role",this.credentialsService.getRoleAuthenticated());
@@ -89,6 +105,11 @@ public class MainController {
 	
 	@RequestMapping(value="/default/ordine", method = RequestMethod.POST)
 	public String newOrdine(@ModelAttribute("ordine") Ordine ordine, Model model) {
+		System.out.println(ordine.getOrario());
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		Utente utente = credentials.getUser();
+		ordine.setCliente(utente);
 		boolean c=true;
 		ordine.setData(new SimpleDateFormat("dd/MMM/yyyy").format(new Date()));
 		ordine.setTotale(ordine.getTotale());
@@ -122,12 +143,34 @@ public class MainController {
 	
 	
 	@PostMapping(value = "/admin/newpizza")
-	public String newPizza(@ModelAttribute("pizza") Pizza pizza, @RequestParam("file") MultipartFile file, Model model) throws IllegalStateException, IOException {
-		this.pizzaservice.inserisci(pizza);
+	public String newPizza(@ModelAttribute("pizza") Pizza pizza, @RequestParam("file") MultipartFile file, Model model,BindingResult pizzaBindingResult) throws IllegalStateException, IOException {
+		this.pizzavalidator.validate(pizza, pizzaBindingResult);
+		if(!pizzaBindingResult.hasErrors()) {
 		String baseDir="C:\\Users\\utente\\Documents\\workspace-spring-tool-suite-4-4.11.1.RELEASE\\PizzaRevolution\\src\\main\\resources\\static\\images\\";
 			file.transferTo(new File(baseDir + pizza.getNome()+".jpg"));
 		this.pizzaservice.inserisci(pizza);
-		return "admin/home";
+		return "redirect:/admin/menu";
+		}
+		model.addAttribute("role",true);
+		model.addAttribute("Pizze",this.pizzaservice.tutte());
+		model.addAttribute("pizza" , new Pizza());
+		model.addAttribute("ingrediente" , new Ingrediente());
+		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
+		return "menu";
+	}
+	@PostMapping(value = "/admin/newingrediente")
+	public String newPizza(@ModelAttribute("ingrediente") Ingrediente ingrediente, Model model,BindingResult ingredientiBindingResult){
+		this.ingredientevalidator.validate(ingrediente, ingredientiBindingResult);
+		if(!ingredientiBindingResult.hasErrors()) {
+		this.ingredienteservice.inserisci(ingrediente);
+		return "redirect:/admin/menu";
+		}
+		model.addAttribute("role",true);
+		model.addAttribute("Pizze",this.pizzaservice.tutte());
+		model.addAttribute("pizza" , new Pizza());
+		model.addAttribute("ingrediente" , new Ingrediente());
+		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
+		return "menu";
 	}
 	
 	
@@ -135,7 +178,6 @@ public class MainController {
 	public String menu(Model model) {
 		model.addAttribute("role",false);
 		model.addAttribute("Pizze",this.pizzaservice.tutte());
-		model.addAttribute("pizza" , new Pizza());
 		return "menu";
 	}
 	@GetMapping(value = "/admin/menu")
@@ -143,6 +185,8 @@ public class MainController {
 		model.addAttribute("role",true);
 		model.addAttribute("Pizze",this.pizzaservice.tutte());
 		model.addAttribute("pizza" , new Pizza());
+		model.addAttribute("ingrediente" , new Ingrediente());
+		model.addAttribute("Ingredienti",this.ingredienteservice.tutti());
 		return "menu";
 	}
 	
@@ -185,22 +229,24 @@ public class MainController {
 	
 	@GetMapping(value = "/admin/storico")
 	public String storico(Model model) {
-		double pippo = 0;
-		for(Ordine o : ordineservice.tutti()) {
-			System.out.println(o.getTotale());
-			pippo+=o.getTotale();
-		}
-		model.addAttribute("ordine",ordineservice.tutti());
-		model.addAttribute("pippo",pippo);		
-		return "admin/StoricoOrdini";
+		model.addAttribute("role",true);
+		model.addAttribute("ordine",ordineservice.tutti());	
+		return "StoricoOrdini";
 	}
 	
-	@GetMapping(value = "/admin/det_ordine/{id}")
+	@GetMapping(value = "/default/storico")
+	public String storicopersonale(Model model) {
+		model.addAttribute("role",false);
+		model.addAttribute("ordine",ordineservice.ordiniPerCliente(getUtente()));	
+		return "StoricoOrdini";
+	}
+	
+	@GetMapping(value = "/det_ordine/{id}")
 	public String det_ordine(@PathVariable("id") Long id, Model model) {
 		Ordine ordine = ordineservice.ordinePerId(id);
 		model.addAttribute("ordine",ordine);
 
-		return "/admin/ordine";
+		return "det_ordine";
 	}
 	
 	public double totaleordine(List<Ordine> ordini) {
@@ -219,23 +265,4 @@ public class MainController {
 		return utente;
 	}
 
-
-	@ModelAttribute("allOrari")
-	public List<String> populateOrari() {
-		List<String> orari = new ArrayList<String>();
-		orari.add("19:00");
-		orari.add("19:15");
-		orari.add("19:30");
-		orari.add("19:45");
-		orari.add("20:00");
-		orari.add("20:15");
-		orari.add("20:30");
-		orari.add("20:45");
-		orari.add("21:00");
-		orari.add("21:15");
-		orari.add("21:30");
-		orari.add("21:45");
-		orari.add("22:00");
-		return orari;
-	}
 }

@@ -124,15 +124,33 @@
             padding-top: 32px!important;
             padding-bottom: 32px!important;
         }
+        .errors{
+	padding: 5px 5px;
+	color: black;
+	font-size: 18px;
+}
+.errors::before{
+	content: "-";
+}
+.error{
+	background-color: rgb(255, 255, 255);
+	margin: auto;
+	justify-content: space-between;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+}
 
 </style>
 
 <html>
-<head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  
-<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
-</head>
+  	<div th:if="${role}">
+		<head  th:replace="fragments/admin.html :: headerfiles(title='Menu')">  </head>
+	</div>
+	<div th:unless="${role}">
+		<head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  </head>
+	</div>
+
 
 <body>
 
@@ -143,13 +161,23 @@
 		<header th:replace="fragments/base.html :: header"></header>
 	</div>
  
+ 
+   <div class="error">
+   <span class="errors" th:if="${#fields.hasErrors('ingrediente.nome')}" th:errors="${ingrediente.nome}" ></span>
+   <span class="errors" th:if="${#fields.hasErrors('pizza.nome')}" th:errors="${pizza.nome}" ></span>
+   <span class="errors" th:if="${#fields.hasErrors('pizza.ingredientiBase')}" th:errors="${pizza.ingredientiBase}" ></span>
+   <span class="errors" th:if="${#fields.hasErrors('pizza.prezzo')}" th:errors="${pizza.prezzo}"  ></span>
+   </div>
 		<!-- Page content -->
 	    <div class="stile-content stile-padding-large stile-margin-top">
 	        <div class="stile-light-grey stile-padding-large stile-padding-32 stile-margin-top">
 	        <div style="padding-bottom: 40px;">
 	            <div>
 	            	<h1> Menu</h1>
-	            	<p><button th:if="${role}" class ="bottone" id="myBtn_form">Aggiungi</button></p>
+	            	<div style="display: flex;width: 100%; justify-content: space-around;">
+	            	<button th:if="${role}" class ="bottone btn btn-primary" id="myBtn_form">Aggiungi nuova pizza</button>
+	            	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Aggiungi nuovo ingrediente</button>
+	            	</div>
 	            </div>
 	        </div>
             	<hr>
@@ -161,7 +189,7 @@
 				              <span class="menu-item-name"th:text="${p.nome}">pizza</span>
 				              <div class="menu-item-description">
 					              <div th:each=" i: ${p.ingredientiBase}">
-					              	<p th:text="${i.nome} + ','"> </p>
+					              	<p th:text=" ${i.nome} + ','"> </p>
 					              </div>
 					           </div>
 				              <span class="menu-item-price" th:text="${p.prezzo} + '€'">prezzo</span>
@@ -171,11 +199,37 @@
 	        </div>
 	        </div>
 	    </div> 
+	    
+	    <!–– modal aggiungi ingredienti––>
+	    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="max-width: 50%;width: 50%;max-width: 90%;height: 60%;">
+     <form th:action="@{/admin/newingrediente}" method="POST">
+    <div class="modal-content" style="background-color: white!important;height: 100%;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuovo ingrediente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+       	<label for="ingrediente">Nome ingrediente:</label>
+      <input type="text" class="form-control" id="ingrediente" th:field="${ingrediente.nome}" placeholder="name"  required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+     </form>
+  </div>
+</div>
 	    <div th:replace="loginForm :: login"></div>
+	    <!–– modal aggiungi nuova pizza ––>
 	    <div id="form" class="modal">
 				
 				  <!-- Modal content -->
-				  <div  class="modal-content" style="background-color: #ffffff !important">
+				  <div  class="modal-content-menu" style="background-color: #ffffff !important">
 				    <span id="close" class="close">&times;</span>
 				  
 				      <form th:action="@{/admin/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data" style="height: 100%;">

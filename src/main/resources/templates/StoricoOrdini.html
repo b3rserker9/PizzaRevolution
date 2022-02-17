@@ -1,0 +1,80 @@
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+	<div th:if="${role}">
+		<head th:replace="fragments/admin.html :: headerfiles(title='Storico Ordini')"> </head>
+	</div>
+	<div th:unless="${role}">
+		<head  th:replace="fragments/default.html :: headerfiles(title='Menu')">  </head>
+	</div>
+
+	  	<div th:if="${role}">
+		<header th:replace="fragments/admin.html :: header"></header>
+	</div>
+	<div th:unless="${role}">
+		<header th:replace="fragments/default.html :: header"></header>
+	</div>
+ 
+
+<style>
+.space{
+	width: 100%;
+	height: 160px;
+}
+.table {
+     width: 100%;
+     max-width: 100%;
+     margin-bottom: 1rem;
+     background-color: transparent
+ }
+
+ .table thead th{
+     border-top: 0;
+     border-bottom-width: 1px;
+     font-weight: bold;
+     font-size: 19px;
+     text-transform: uppercase
+ }
+
+ .table td {
+	font-weight: 600;
+     font-size: 17px;
+     padding: .875rem 0.9375rem
+ }
+.table-div{
+	margin: auto
+	;
+	width: 80%;
+}
+</style>
+<body>
+
+<div class="space"></div>
+<div class="table-div">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Orario</th>
+      <th scope="col">Fattorino</th>
+      <th scope="col">Prezzo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="o : ${ordine}">
+      <th scope="row" ><a th:href="'/det_ordine/'+${o.id}" th:text="${o.id}"></a></th>
+      <td th:text="${o.cliente.nome}"></td>
+      <td th:text="${o.orario}"></td>
+      <td th:text="${o.fattorino.nome}"></td>
+      <td th:text="${o.totale}">prezzo</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+
+
+</body>
+</html>

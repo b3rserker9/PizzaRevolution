@@ -19,6 +19,12 @@
 	color: black!important;
 	text-decoration: none;
 }
+.tittle{
+	width: 100%;
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	font-weight: bold;
+}
 </style>
 <body>
 
@@ -54,11 +60,23 @@
 
   </div>
   <div class="column">
-    <img src="images/suppli.jpg" style="width:100%">
+    <a href="suppli"><img href="/suppli" src="images/suppli.jpg" style="width:100%"></a>
     <img src="images/tonde.jpg" style="width:100%">
 
   </div>  
 </div>
+</div>
+<div class="tittle" id="contattaci">
+<h2>CONTATTACI</h2>
+<div style="margin: auto;width: 73%;height: 2px; background-color: black;"></div></div>
+
+<div class="third form">
+    
+  <input name="name" type="text" class="feedback-input" placeholder="Name" />   
+  <input name="email" type="text" class="feedback-input" placeholder="Email" />
+  <textarea name="text" class="feedback-input textarea" placeholder="Comment"></textarea>
+  <button class="contattaci" ><i class="fas fa-paper-plane"></i>SEND</button>
+
 </div>
 <footer th:replace="fragments/base.html :: footer"></footer>
 <div th:replace="loginForm :: login"></div>

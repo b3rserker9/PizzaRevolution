@@ -25,11 +25,7 @@ public interface OrdineRepository extends CrudRepository<Ordine, Long>{
 
 	public List<Ordine> findByData(String data);
 	
-    @Query(value = "SELECT orario, COUNT(pizze_id) as nPizzePerOrario, COUNT( DISTINCT op.ordine_id) as nFattoriniPerOrario " +
-    	   "FROM ordine_pizze op JOIN ordine o ON (op.ordine_id = o.id) " +
-    		"WHERE o.data = ?1 " +
-    	   "GROUP BY orario " +
-    	   "ORDER BY orario ", nativeQuery = true)
-	public Collection<Occupazione> findOccupazionePerOrario(String data);
+    @Query(value = "SELECT COUNT(orario) as disponibile FROM ordine WHERE orario = ?1", nativeQuery = true)
+	public Occupazione findOccupazionePerOrario(String orario);
 
 }
