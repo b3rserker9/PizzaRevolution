@@ -11,47 +11,24 @@
 
 
 <body>
-<table class="tabella">
-  <tr>
-  <th>Ordine_Id</th>
-  <th>Cliente</th>
-  <th>Orario</th>
-  <th>Fattorino</th>
-  <th>Prezzo</th>
-  </tr>
-  <div th:each="o : ${ordine}">
-  <tr>
-  <td  class="pointer"><a th:href="'/det_ordine/'+${o.id}"><span th:text="${o.id}"></span></a></td>
-  <td  class="pointer"><a href="#popup"><span th:text="${o.cliente.nome}"></span></a></td>
-  <td th:text="${o.orario}">orario</td>
-  <td  class="pointer"><a href="#popup"><span th:text="${o.fattorino.nome}"></span></a></td>
-  <td th:text="${o.totale}">prezzo</td>
-  </tr>
-  </div>
-  <tr class="blank">
-  <th></th>
-  <th></th>
-  <th></th>
-  <th></th>
-  <th  th:text="${pippo}">Totale</th>
-  </tr>
-</table>
+
 <div class="space"></div>
 <div class="table-div">
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Telefono</th>
-      <th scope="col">Veicolo</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Orario</th>
+      <th scope="col">Fattorino</th>
+      <th scope="col">Prezzo</th>
       <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
     <tr th:each="o : ${ordine}">
       <th scope="row" th:text="${o.id}"></th>
-      <td th:text="${o.nome}"></td>
+      <td th:text="${o.cliente.nome}"></td>
       <td th:text="${o.orario}"></td>
       <td th:text="${o.fattorino.nome}"></td>
       <td th:text="${o.totale}">prezzo</td>
