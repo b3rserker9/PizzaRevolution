@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+
+<html>
+  	<div th:if="${role}">
+		<head  th:replace="fragments/admin.html :: headerfiles(title='Menu')">  </head>
+	</div>
+	<div th:unless="${role}">
+		<head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  </head>
+	</div>
+  	<div th:if="${role}">
+		<header th:replace="fragments/admin.html :: header"></header>
+		<div th:replace="fragments/admin.html :: ingredienti"></div>
+		<div th:replace="fragments/admin.html :: pizza"></div>
+	</div>
+	<div th:unless="${role}">
+		<header th:replace="fragments/base.html :: header"></header>
+		 <div th:replace="loginForm :: login"></div>
+	</div>
 <style>
 .container-menu {
 	margin-top: 100px;
@@ -142,32 +158,13 @@
 }
 
 </style>
-
-<html>
-  	<div th:if="${role}">
-		<head  th:replace="fragments/admin.html :: headerfiles(title='Menu')">  </head>
-	</div>
-	<div th:unless="${role}">
-		<head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  </head>
-	</div>
-
-
 <body>
-
-		  	<div th:if="${role}">
-		<header th:replace="fragments/admin.html :: header"></header>
-	</div>
-	<div th:unless="${role}">
-		<header th:replace="fragments/base.html :: header"></header>
-	</div>
+	
+	   
+	
  
  
-   <div class="error">
-   <span class="errors" th:if="${#fields.hasErrors('ingrediente.nome')}" th:errors="${ingrediente.nome}" ></span>
-   <span class="errors" th:if="${#fields.hasErrors('pizza.nome')}" th:errors="${pizza.nome}" ></span>
-   <span class="errors" th:if="${#fields.hasErrors('pizza.ingredientiBase')}" th:errors="${pizza.ingredientiBase}" ></span>
-   <span class="errors" th:if="${#fields.hasErrors('pizza.prezzo')}" th:errors="${pizza.prezzo}"  ></span>
-   </div>
+  
 		<!-- Page content -->
 	    <div class="stile-content stile-padding-large stile-margin-top">
 	        <div class="stile-light-grey stile-padding-large stile-padding-32 stile-margin-top">
@@ -176,7 +173,7 @@
 	            	<h1> Menu</h1>
 	            	<div style="display: flex;width: 100%; justify-content: space-around;">
 	            	<button th:if="${role}" class ="bottone btn btn-primary" id="myBtn_form">Aggiungi nuova pizza</button>
-	            	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Aggiungi nuovo ingrediente</button>
+	            	<button th:if="${role}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Aggiungi nuovo ingrediente</button>
 	            	</div>
 	            </div>
 	        </div>
@@ -200,76 +197,7 @@
 	        </div>
 	    </div> 
 	    
-	    <!–– modal aggiungi ingredienti––>
-	    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="max-width: 50%;width: 50%;max-width: 90%;height: 60%;">
-     <form th:action="@{/admin/newingrediente}" method="POST">
-    <div class="modal-content" style="background-color: white!important;height: 100%;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuovo ingrediente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-       	<label for="ingrediente">Nome ingrediente:</label>
-      <input type="text" class="form-control" id="ingrediente" th:field="${ingrediente.nome}" placeholder="name"  required>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-     </form>
-  </div>
-</div>
-	    <div th:replace="loginForm :: login"></div>
-	    <!–– modal aggiungi nuova pizza ––>
-	    <div id="form" class="modal">
-				
-				  <!-- Modal content -->
-				  <div  class="modal-content-menu" style="background-color: #ffffff !important">
-				    <span id="close" class="close">&times;</span>
-				  
-				      <form th:action="@{/admin/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data" style="height: 100%;">
-				      		  <div style="    display: flex; flex-direction: column; justify-content: space-around; height: 100%;">
-				      		  <div style="display: flex;flex-direction: row;    justify-content: space-around;">
-				      		 <div class="file-upload">
-						        <label for="myfile"><img style="width: auto; height: 150px;" src="images/foto.png"></label>
-						        <input  type="file"  name="file">
-						     </div>
-        					<div class="text-upload" style="display: flex;justify-content: space-around;flex-direction: column;width: 50%;">
-							 <div class="form-group">
-      						<label for="nome">Nome Pizza</label>
-      						<input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Name">
-    									</div>
-    									 <label for="prezzo">Prezzo</label>
-		<div class="input-group mb-2 mr-sm-2" style="width: 30%;height:62px ;">
-    <div class="input-group-prepend">
-      <div class="input-group-text">€</div>
-    </div>
-    <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo" placeholder="Prezzo">
-  </div>                   
- 
-	                           <div  class="ingredienti-upload cust">
-	                           <div th:each="i : ${Ingredienti}" class="custom-control custom-switch cust">
-  <input type="checkbox" class="custom-control-input" th:id="${i.id}" th:field="*{ingredientiBase}" th:value="${i.id}">
-  <label class="custom-control-label" th:for="${i.id}" th:text="${i.nome}"></label>
-</div>
-	                           			 
-								        
-	                          	</div>	 
-        					</div>
-								
-				      		  </div>
-				      		  <div style="width: 100%; display: flex;justify-content: center;">
-				      		  <button type="submit" class="btn btn-warning">CREATE</button>
-				      		  <div>
-				      		  </div>
-						</form>
-					    </div>
-					  </div>
+
 </body>
 	        <script>
 // Get the modal

@@ -41,7 +41,79 @@
 				</div>
 				
 			</header>
-			    
+			
+			    <!–– modal aggiungi nuova pizza ––>
+	    <div id="form" class="modal" th:fragment="pizza">
+				
+				  <!-- Modal content -->
+				  <div  class="modal-content-menu" style="background-color: #ffffff !important">
+				    <span id="close" class="close">&times;</span>
+				  
+				      <form th:action="@{/admin/newpizza}" method="POST" th:object="${pizza}" enctype="multipart/form-data" style="height: 100%;">
+				      		  <div style="    display: flex; flex-direction: column; justify-content: space-around; height: 100%;">
+				      		  <div style="display: flex;flex-direction: row;    justify-content: space-around;">
+				      		 <div class="file-upload">
+						        <label for="myfile"><img style="width: auto; height: 150px;" src="images/foto.png"></label>
+						        <input  type="file"  name="file">
+						     </div>
+        					<div class="text-upload" style="display: flex;justify-content: space-around;flex-direction: column;width: 50%;">
+							 <div class="form-group">
+      						<label for="nome">Nome Pizza</label>
+      						<input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Name">
+    									</div>
+    									 <label for="prezzo">Prezzo</label>
+		<div class="input-group mb-2 mr-sm-2" style="width: 30%;height:62px ;">
+    <div class="input-group-prepend">
+      <div class="input-group-text">€</div>
+    </div>
+    <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo" placeholder="Prezzo">
+  </div>                   
+ 
+	                           <div  class="ingredienti-upload cust">
+	                           <div th:each="i : ${Ingredienti}" class="custom-control custom-switch cust">
+  <input type="checkbox" class="custom-control-input" th:id="${i.id}" th:field="*{ingredientiBase}" th:value="${i.id}">
+  <label class="custom-control-label" th:for="${i.id}" th:text="${i.nome}"></label>
+</div>
+	                           			 
+								        
+	                          	</div>	 
+        					</div>
+								
+				      		  </div>
+				      		  <div style="width: 100%; display: flex;justify-content: center;">
+				      		  <button type="submit" class="btn btn-warning">CREATE</button>
+				      		  <div>
+				      		  </div>
+						</form>
+					    </div>
+					  </div>
+		
+			
+			
+			        <!–– modal aggiungi ingredienti––>
+	    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="ingredienti">
+  <div class="modal-dialog" role="document" style="max-width: 50%;width: 50%;max-width: 90%;height: 60%;">
+     <form th:action="@{/admin/newingrediente}" method="POST">
+    <div class="modal-content" style="background-color: white!important;height: 100%;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuovo ingrediente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+       	<label for="ingrediente">Nome ingrediente:</label>
+      <input type="text" class="form-control" id="ingrediente" th:field="${ingrediente.nome}" placeholder="name"  required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+     </form>
+  </div>
+</div>
 		<footer th:fragment="footer">
 			<div class="footer">
 				<div class="footer-content">
