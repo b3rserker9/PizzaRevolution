@@ -32,14 +32,14 @@ html {
           </div>
           <div class="input-box">
             <span class="details">Cognome</span>
-            <input type="text" placeholder="Enter your username" th:field="${user.cognome}" required>
+            <input type="text" placeholder="Enter your last name" th:field="${user.cognome}" required>
             <span class="errors" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" ></span>
 		 </div>
          
           <div class="input-box">
             <span class="details">Username</span>
             <input type="text" placeholder="Enter your username" th:field="${credentials.username}" required>
-            <span class="errors" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" ></span>
+            <span class="errors" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}"  ></span>
           </div>
           <div class="input-box">
             <span class="details">Password</span>
@@ -71,7 +71,7 @@ html {
           </div>
            <div class="input-box numeri">
             <span class="details">Scala</span>
-            <input type="text" placeholder="Scala" th:field="${indirizzo.scala}" max-length="1" required>
+            <input type="text" placeholder="Scala" th:field="${indirizzo.scala}" max-length="1" >
           </div>
           <div class="input-box numeri">
             <span class="details">Cap</span>
@@ -80,7 +80,6 @@ html {
            <div class="input-box tel">
             <span class="details">Telefono</span>
             <input type="number" placeholder="Telefono" th:field="${user.telefono}" min="3000000000" max="3999999999" required>
-            <span class="errors" th:if="${#fields.hasErrors('user.telefono')}" th:errors="${user.indirizzo.via}" ></span>
           </div>
           <div class="button">
          

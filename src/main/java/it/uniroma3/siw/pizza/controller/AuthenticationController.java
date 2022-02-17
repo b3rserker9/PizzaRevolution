@@ -46,7 +46,7 @@ public class AuthenticationController {
 	
 	
 	//default lo abbiamo definito in authconfiguration una volta che il login ha avuto successo
-    @RequestMapping(value = "/default", method = RequestMethod.GET)
+    @RequestMapping(value = "/defaults", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
         
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

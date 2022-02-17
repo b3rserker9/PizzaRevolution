@@ -1,7 +1,7 @@
 package it.uniroma3.siw.pizza.authentication;
 
 import static it.uniroma3.siw.pizza.model.Credentials.ADMIN_ROLE;
-//import static it.uniroma3.siw.spring.model.Credentials.DEFAULT_ROLE;
+import static it.uniroma3.siw.pizza.model.Credentials.DEFAULT_ROLE;
 
 import javax.sql.DataSource;
 
@@ -50,12 +50,14 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 // solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
                 .antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/default/**").hasAnyAuthority(DEFAULT_ROLE)
+                .antMatchers(HttpMethod.POST, "/default/**").hasAnyAuthority(DEFAULT_ROLE)
                 // tutti gli utenti autenticati possono accere alle pagine rimanenti 
                 .anyRequest().authenticated()
 
                 .and().formLogin()
                 .loginPage("/login").failureUrl("/index#login").
-                defaultSuccessUrl("/default")
+                defaultSuccessUrl("/defaults")
 
                 .and().logout()
                 .logoutUrl("/logout")

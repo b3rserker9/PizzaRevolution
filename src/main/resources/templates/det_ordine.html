@@ -7,7 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/ced3f913ea.js" crossorigin="anonymous"></script>
 </head>
-<header th:replace="fragments/default.html :: header"></header>
+<header th:if="${role=='ADMIN'}" th:replace="fragments/admin.html :: header"></header>
+
 <style>
 
 .text-secondary-d1 {
@@ -203,7 +204,18 @@ hr {
                     </tbody>
                 </table>
             </div>
-          
+          <div class="row mt-3">
+                        
+                            <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                <div class="col-7 text-right">
+                                    Totale Pagamento
+                                </div>
+                                <div class="col-5">
+                                    <span class="text-150 text-success-d3 opacity-2" th:text="${ordine.totale}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                  
 

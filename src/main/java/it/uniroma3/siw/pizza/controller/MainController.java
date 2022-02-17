@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import static it.uniroma3.siw.pizza.model.Credentials.ADMIN_ROLE;
 import it.uniroma3.siw.pizza.controller.validator.IngredienteValidator;
 import it.uniroma3.siw.pizza.controller.validator.PizzaValidator;
 import it.uniroma3.siw.pizza.model.Credentials;
@@ -65,7 +66,6 @@ public class MainController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
-		model.addAttribute("loginError", true);
 			return "index";
 	}
 	
@@ -243,6 +243,9 @@ public class MainController {
 	
 	@GetMapping(value = "/det_ordine/{id}")
 	public String det_ordine(@PathVariable("id") Long id, Model model) {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("role",credentials.getRole());
 		Ordine ordine = ordineservice.ordinePerId(id);
 		model.addAttribute("ordine",ordine);
 
