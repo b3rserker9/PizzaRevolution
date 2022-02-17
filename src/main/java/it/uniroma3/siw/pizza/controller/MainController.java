@@ -169,6 +169,20 @@ public class MainController {
         return "redirect:/admin/fattorini";
     }
 	
+	@PostMapping(value = "/admin/aggiornaFattorini")
+    public String aggiornaUtenti(@RequestParam Long FattorinoId, Model model,@ModelAttribute("fattorino") Fattorino fattorino) {
+		
+		Fattorino fattorino_attuale = this.fattoriniService.getFattorino(FattorinoId);
+		
+		fattorino_attuale.setNome(fattorino.getNome());
+		fattorino_attuale.setTelefono(fattorino.getTelefono());
+		fattorino_attuale.setTipo_veicolo(fattorino.getTipo_veicolo());
+		
+		this.fattoriniService.addFattorino(fattorino_attuale);
+		
+        return "redirect:/admin/fattorini";
+    }
+	
 	@GetMapping(value = "/admin/storico")
 	public String storico(Model model) {
 		double pippo = 0;

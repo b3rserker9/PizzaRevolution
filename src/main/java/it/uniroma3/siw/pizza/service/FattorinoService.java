@@ -51,4 +51,9 @@ public class FattorinoService {
 		this.fattorinorepository.deleteById(id);
 	}
 
+	public Fattorino getFattorino(Long fattorinoId) {
+		Optional<Fattorino> fattorino = this.fattorinorepository.findById(fattorinoId);
+		return fattorino.orElse(null);
+	}
+
 }

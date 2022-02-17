@@ -81,11 +81,12 @@ input {
   </thead>
   <tbody>
     <tr th:each="f : ${fattorini}">
+    <form  th:action="@{/admin/aggiornaFattorini(FattorinoId=${f.id})}"  method="POST">
       <th scope="row" th:text="${f.id}"></th>
-      <td th:text="${f.nome}"></td>
-      <td th:text="${f.telefono}"></td>
-      <td th:text="${f.tipo_veicolo}"></td>
-      <td><button class="btn btn-info">Edit</button><a th:href="'/admin/eliminaFattorino/'+${f.id}"><button class="btn btn-danger">Delete</button></a></td>
+      <td><input th:id="${f.id}+n" name="nome" th:value="${f.nome}" disabled></td>
+      <td><input th:id="${f.id}+t" name="telefono" th:value="${f.telefono}" disabled></td>
+      <td><input th:id="${f.id}+v" name="tipo_veicolo" th:value="${f.tipo_veicolo}" disabled></td>
+      <td><button type="button" th:id="${f.id}+b" th:attr="onclick=|aggiorna('${f.id}')|" class="btn btn-info">Edit</button></form><a th:href="'/admin/eliminaFattorino/'+${f.id}"><button class="btn btn-danger">Delete</button></a></td>
     </tr>
     
   </tbody>
@@ -124,6 +125,29 @@ input {
 </body>
 
 <script>
+	
+		var verifica = true;
+		
+		function aggiorna(id){
+		
+			if(verifica){
+				document.getElementById(id+"n").disabled=false;
+				document.getElementById(id+"t").disabled=false;
+				document.getElementById(id+"v").disabled=false;
+				document.getElementById(id+"b").innerText="Save";
+				verifica = false;
+			}else{
+				document.getElementById(id+"b").setAttribute("type","submit");
+				
+			}
+			
+		}
+
+
+
+
+
+
 		// Get the modal
 		var modal = document.getElementById("myModal");
 		
