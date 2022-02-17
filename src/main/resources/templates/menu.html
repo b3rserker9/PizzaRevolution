@@ -6,15 +6,7 @@
 	<div th:unless="${role}">
 		<head  th:replace="fragments/base.html :: headerfiles(title='Menu')">  </head>
 	</div>
-  	<div th:if="${role}">
-		<header th:replace="fragments/admin.html :: header"></header>
-		<div th:replace="fragments/admin.html :: ingredienti"></div>
-		<div th:replace="fragments/admin.html :: pizza"></div>
-	</div>
-	<div th:unless="${role}">
-		<header th:replace="fragments/base.html :: header"></header>
-		 <div th:replace="loginForm :: login"></div>
-	</div>
+  	
 <style>
 .container-menu {
 	margin-top: 100px;
@@ -159,7 +151,15 @@
 
 </style>
 <body>
-	
+	<div th:if="${role}">
+		<header th:replace="fragments/admin.html :: header"></header>
+		<div th:replace="fragments/admin.html :: ingredienti"></div>
+		<div th:replace="fragments/admin.html :: pizza"></div>
+	</div>
+	<div th:unless="${role}">
+		<header th:replace="fragments/base.html :: header"></header>
+		 <div th:replace="loginForm :: login"></div>
+	</div>
 	   
 	
  
@@ -225,6 +225,5 @@ window.onclick = function(event) {
 
 
 </script>
-					  
-
+			
 </html>
